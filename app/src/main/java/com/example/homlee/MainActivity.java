@@ -1,0 +1,41 @@
+package com.example.homlee;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+
+import com.example.homlee.activities.AirHockeyActivity;
+import com.example.homlee.activities.SimpleOpenGLActivity;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        findViewById(R.id.btn_open_gl).setOnClickListener(this);
+        findViewById(R.id.btn_air_hockey).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_open_gl:
+                startActivity(SimpleOpenGLActivity.class);
+                break;
+            case R.id.btn_air_hockey:
+                startActivity(AirHockeyActivity.class);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void startActivity(Class<? extends Activity> clazz) {
+        Intent intent = new Intent();
+        intent.setClass(this, clazz);
+        startActivity(intent);
+    }
+}
