@@ -23,6 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Air Hockey"/>
+            <Button
+                android:id="@+id/btn_ui_effect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UI effect"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

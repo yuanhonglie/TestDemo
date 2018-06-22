@@ -18,6 +18,8 @@
 
         <activity android:name="com.example.homlee.activities.SimpleOpenGLActivity"/>
         <activity android:name="com.example.homlee.activities.AirHockeyActivity"/>
+        <activity android:name="com.example.homlee.activities.UIActivity"/>
+        <activity android:name="com.example.homlee.activities.EditorEffectActvity"/>
     </application>
 
 </manifest>
