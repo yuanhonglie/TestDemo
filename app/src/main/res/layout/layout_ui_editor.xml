@@ -1,80 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-    <RelativeLayout
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="EditText Focus Change Test"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/wrapper_editor1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="5dp">
+
         <LinearLayout
-            android:id="@+id/ll_editor1"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingBottom="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+
             <EditText
+                android:id="@+id/et_account"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent" />
+
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ll_editor1">
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#cdcdcd"/>
-            <View
-                android:id="@+id/focus_view1"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:background="@android:color/black"/>
-        </FrameLayout>
-    </RelativeLayout>
 
-    <RelativeLayout
+        <com.example.homlee.widgets.FocusIndicator
+            android:id="@+id/fi_indicator1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrapper_editor2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="5dp">
+
         <LinearLayout
-            android:id="@+id/ll_editor2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingBottom="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+
             <EditText
+                android:id="@+id/et_password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent" />
+
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
-        <FrameLayout
+
+        <com.example.homlee.widgets.FocusIndicator
+            android:id="@+id/fi_indicator2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ll_editor2">
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#cdcdcd"/>
-            <View
-                android:id="@+id/focus_view2"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:background="@android:color/black"/>
-        </FrameLayout>
-    </RelativeLayout>
+            android:layout_height="2dp"/>
+    </LinearLayout>
 
 
 </LinearLayout>
