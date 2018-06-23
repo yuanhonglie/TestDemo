@@ -36,8 +36,10 @@
                 android:background="@android:color/transparent" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:id="@+id/iv_delete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/delete"/>
         </LinearLayout>
 
         <com.example.homlee.widgets.FocusIndicator
@@ -68,8 +70,10 @@
                 android:background="@android:color/transparent" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:id="@+id/iv_eye"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_eye"/>
         </LinearLayout>
 
         <com.example.homlee.widgets.FocusIndicator

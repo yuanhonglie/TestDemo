@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context="com.example.homlee.MainActivity">
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <Button
-                android:id="@+id/btn_open_gl"
+                android:id="@+id/btn_simple_opengl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="OpenGL"/>
+                android:text="Simple OpenGL" />
+
             <Button
-                android:id="@+id/btn_ui_effect"
+                android:id="@+id/btn_air_hockey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="UI effect"/>
+                android:text="Air Hockey" />
         </LinearLayout>
     </ScrollView>
-</FrameLayout>
+</LinearLayout>

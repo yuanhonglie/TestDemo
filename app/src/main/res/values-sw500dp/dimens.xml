@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="test_dimen">500dp</dimen>
+</resources>

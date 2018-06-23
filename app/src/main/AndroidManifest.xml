@@ -17,10 +17,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.homlee.activities.SimpleOpenGLActivity"/>
-        <activity android:name="com.example.homlee.activities.AirHockeyActivity"/>
-        <activity android:name="com.example.homlee.activities.UIActivity"/>
-        <activity android:name="com.example.homlee.activities.EditorEffectActvity"/>
+        <activity android:name=".activities.OpenGLActivity"/>
+        <activity android:name=".activities.SimpleOpenGLActivity"/>
+        <activity android:name=".activities.AirHockeyActivity"/>
+        <activity android:name=".activities.UIActivity"/>
+        <activity android:name=".activities.EditorEffectActivity"/>
+        <activity android:name=".activities.ScreenArgsActivity"/>
     </application>
 
 </manifest>

@@ -7,24 +7,30 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.homlee.R;
 import com.example.homlee.widgets.FocusIndicator;
 
-public class EditorEffectActvity extends Activity implements View.OnClickListener{
+public class EditorEffectActivity extends Activity implements View.OnClickListener{
 
     private EditText mAccountEt;
     private EditText mPasswordEt;
     private FocusIndicator mAccountIndicator;
     private FocusIndicator mPasswordIndicator;
-
     private InputMethodManager mInputMethodManager;
+
+    private ImageView mBtnDel;
+    private ImageView mBtnEye;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_ui_editor);
+        setContentView(R.layout.activity_editor_demo);
 
+        mBtnDel = findViewById(R.id.iv_delete);
+        mBtnEye = findViewById(R.id.iv_eye);
         mAccountEt = findViewById(R.id.et_account);
         mPasswordEt = findViewById(R.id.et_password);
         mAccountEt.setOnFocusChangeListener(mListener);
@@ -34,6 +40,8 @@ public class EditorEffectActvity extends Activity implements View.OnClickListene
         mPasswordIndicator = findViewById(R.id.fi_indicator2);
         mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
+        mBtnDel.setOnClickListener(this);
+        mBtnEye.setOnClickListener(this);
         findViewById(R.id.parent).setOnClickListener(this);
         findViewById(R.id.wrapper_editor1).setOnClickListener(this);
         findViewById(R.id.wrapper_editor2).setOnClickListener(this);
@@ -56,7 +64,7 @@ public class EditorEffectActvity extends Activity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
-        ativateEditor(mAccountEt);
+        activateEditor(mAccountEt);
     }
 
 
@@ -65,23 +73,30 @@ public class EditorEffectActvity extends Activity implements View.OnClickListene
 
         switch (view.getId()) {
             case R.id.parent:
-                deativateEditor(mAccountEt);
-                deativateEditor(mPasswordEt);
+                deactivateEditor(mAccountEt);
+                deactivateEditor(mPasswordEt);
                 break;
             case R.id.et_account:
             case R.id.wrapper_editor1:
-                deativateEditor(mPasswordEt);
-                ativateEditor(mAccountEt);
+                deactivateEditor(mPasswordEt);
+                activateEditor(mAccountEt);
                 break;
             case R.id.et_password:
             case R.id.wrapper_editor2:
-                deativateEditor(mAccountEt);
-                ativateEditor(mPasswordEt);
+                deactivateEditor(mAccountEt);
+                activateEditor(mPasswordEt);
+                break;
+            case R.id.iv_delete:
+                Toast.makeText(this, "Delete button was clicked!!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.iv_eye:
+                mBtnEye.setSelected(!mBtnEye.isSelected());
+                Toast.makeText(this, "Eye button was clicked!!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
-    private void ativateEditor(EditText editText) {
+    private void activateEditor(EditText editText) {
         editText.setFocusable(true);//设置输入框可聚集
         editText.setFocusableInTouchMode(true);//设置触摸聚焦
         editText.requestFocus();//请求焦点
@@ -89,14 +104,12 @@ public class EditorEffectActvity extends Activity implements View.OnClickListene
         mInputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_FORCED);// 显示输入法
     }
 
-    private boolean deativateEditor(EditText editText) {
+    private void deactivateEditor(EditText editText) {
         if (editText.isFocusable()) {
             editText.setFocusable(false);//设置输入框不可聚焦，即失去焦点和光标
             if (mInputMethodManager.isActive()) {
                 mInputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);// 隐藏输入法
             }
-            return true;
         }
-        return false;
     }
 }

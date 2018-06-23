@@ -2,6 +2,7 @@ package com.example.homlee;
 
 import android.app.Application;
 
+import com.example.homlee.Utils.Metrics;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -17,6 +18,7 @@ public class LeakCanaryApplication extends Application {
             return;
         }
         LeakCanary.install(this);
+        Metrics.initialize(this);
     }
 
 
