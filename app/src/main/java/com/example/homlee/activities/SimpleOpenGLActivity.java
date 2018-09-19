@@ -1,6 +1,5 @@
 package com.example.homlee.activities;
 
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
@@ -16,7 +15,7 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Created by homlee on 2018/6/8.
  */
-public class SimpleOpenGLActivity extends Activity {
+public class SimpleOpenGLActivity extends BaseActivity {
 
     private GLSurfaceView mGLSurfaceView;
     private boolean rendererSet = false;

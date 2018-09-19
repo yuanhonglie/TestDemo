@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_rx_sample1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rx_sample1"/>
+            <Button
+                android:id="@+id/btn_rx_sample2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rx_sample2"/>
+            <Button
+                android:id="@+id/btn_rx_sample3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rx_sample3"/>
+            <Button
+                android:id="@+id/btn_rx_sample4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rx_sample4"/>
+            <Button
+                android:id="@+id/btn_rx_sample5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rx_sample5"/>
+            <Button
+                android:id="@+id/btn_rx_sample6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rx_sample6"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

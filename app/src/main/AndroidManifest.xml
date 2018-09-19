@@ -23,6 +23,7 @@
         <activity android:name=".activities.UIActivity"/>
         <activity android:name=".activities.EditorEffectActivity"/>
         <activity android:name=".activities.ScreenArgsActivity"/>
+        <activity android:name=".activities.RxJavaActivity"/>
     </application>
 
 </manifest>

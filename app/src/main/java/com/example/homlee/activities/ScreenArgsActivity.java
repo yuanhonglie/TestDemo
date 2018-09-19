@@ -1,6 +1,5 @@
 package com.example.homlee.activities;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,10 +15,7 @@ import com.example.homlee.Utils.Metrics;
  * Created by homlee on 2018/6/23.
  */
 
-public class ScreenArgsActivity extends Activity {
-
-    private static final String TAG = ScreenArgsActivity.class.getSimpleName();
-
+public class ScreenArgsActivity extends BaseActivity {
     private TextView tvScreen;
 
     @Override

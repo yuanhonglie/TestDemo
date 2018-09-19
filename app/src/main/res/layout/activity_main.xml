@@ -23,6 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="UI effect"/>
+            <Button
+                android:id="@+id/btn_rx_java"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RxJava"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
