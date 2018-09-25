@@ -7,6 +7,7 @@ import com.example.homlee.activities.BaseActivity;
 import com.example.homlee.activities.OpenGLActivity;
 import com.example.homlee.activities.RxJavaActivity;
 import com.example.homlee.activities.UIActivity;
+import com.example.homlee.activities.WebViewActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -17,6 +18,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn_open_gl).setOnClickListener(this);
         findViewById(R.id.btn_ui_effect).setOnClickListener(this);
         findViewById(R.id.btn_rx_java).setOnClickListener(this);
+        findViewById(R.id.btn_webview).setOnClickListener(this);
     }
 
     @Override
@@ -30,6 +32,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn_rx_java:
                 startActivity(RxJavaActivity.class);
+                break;
+            case R.id.btn_webview:
+                startActivity(WebViewActivity.class);
                 break;
             default:
                 break;

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.homlee" >
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".LeakCanaryApplication"
         android:allowBackup="true"
@@ -24,6 +26,7 @@
         <activity android:name=".activities.EditorEffectActivity"/>
         <activity android:name=".activities.ScreenArgsActivity"/>
         <activity android:name=".activities.RxJavaActivity"/>
+        <activity android:name=".activities.WebViewActivity"/>
     </application>
 
 </manifest>
