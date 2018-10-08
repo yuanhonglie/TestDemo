@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.homlee.R;
+import com.example.homlee.rxjava.ActivityEvent;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -45,6 +47,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.btn_rx_sample4).setOnClickListener(this);
         findViewById(R.id.btn_rx_sample5).setOnClickListener(this);
         findViewById(R.id.btn_rx_sample6).setOnClickListener(this);
+        findViewById(R.id.btn_rx_sample7).setOnClickListener(this);
         initExecutors();
     }
 
@@ -87,6 +90,9 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.btn_rx_sample6:
                 rxJavaSample6();
+                break;
+            case R.id.btn_rx_sample7:
+                rxJavaSample7();
                 break;
             default:
                 break;
@@ -402,6 +408,85 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
     I/RxJavaActivity: onComplete:
      */
 
+    private void rxJavaSample7() {
+        Log.i(TAG, "rxJavaSample7: start");
+        Observable.interval(1, TimeUnit.SECONDS)
+                .compose(this.<Long>bindUntilEvent(ActivityEvent.DESTORY))
+                .filter(new Predicate<Long>() {
+                    @Override
+                    public boolean test(Long num) throws Exception {
+                        Log.i(TAG, "filter:test: Thread = " + Thread.currentThread().getName());
+                        Log.i(TAG, "filter:test: num  = " + num);
+                        return (num % 2) == 1;
+                    }
+                })
+                .subscribeOn(Schedulers.from(mExecutor1))
+                .map(new Function<Long, String>() {
+                    @Override
+                    public String apply(Long num) throws Exception {
+                        Log.i(TAG, "map:apply: Thread = " + Thread.currentThread().getName());
+                        Log.i(TAG, "map:apply: num  = " + num);
+                        return "string:" + num;
+                    }
+                })
+                .observeOn(Schedulers.from(mExecutor2))
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+                        Log.i(TAG, "onSubscribe: Thread = " + Thread.currentThread().getName());
+                        Log.i(TAG, "onSubscribe: ");
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Log.i(TAG, "onNext: Thread = " + Thread.currentThread().getName());
+                        Log.i(TAG, "onNext: " + s);
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Log.i(TAG, "onError: ");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.i(TAG, "onComplete: ");
+                    }
+                });
+        Log.i(TAG, "rxJavaSample7: end");
+    }
+
+    /*
+    I/RxJavaActivity: rxJavaSample7: start
+    I/RxJavaActivity: onSubscribe: Thread = main
+    I/RxJavaActivity: onSubscribe:
+    I/RxJavaActivity: rxJavaSample7: end
+    I/RxJavaActivity: filter:test: Thread = RxComputationThreadPool-1
+    I/RxJavaActivity: filter:test: num  = 0
+    I/RxJavaActivity: filter:test: Thread = RxComputationThreadPool-1
+    I/RxJavaActivity: filter:test: num  = 1
+    I/RxJavaActivity: map:apply: Thread = RxComputationThreadPool-1
+    I/RxJavaActivity: map:apply: num  = 1
+    I/RxJavaActivity: onNext: Thread = rx-t2
+    I/RxJavaActivity: onNext: string:1
+    I/RxJavaActivity: filter:test: Thread = RxComputationThreadPool-1
+    I/RxJavaActivity: filter:test: num  = 2
+    I/RxJavaActivity: filter:test: Thread = RxComputationThreadPool-1
+    I/RxJavaActivity: filter:test: num  = 3
+    I/RxJavaActivity: map:apply: Thread = RxComputationThreadPool-1
+    I/RxJavaActivity: map:apply: num  = 3
+    I/RxJavaActivity: onNext: Thread = rx-t2
+    I/RxJavaActivity: onNext: string:3
+    I/RxJavaActivity: filter:test: Thread = RxComputationThreadPool-1
+    I/RxJavaActivity: filter:test: num  = 4
+    I/RxJavaActivity: filter:test: Thread = RxComputationThreadPool-1
+    I/RxJavaActivity: filter:test: num  = 5
+    I/RxJavaActivity: map:apply: Thread = RxComputationThreadPool-1
+    I/RxJavaActivity: map:apply: num  = 5
+    I/RxJavaActivity: onNext: Thread = rx-t2
+    I/RxJavaActivity: onNext: string:5
+    I/RxJavaActivity: onComplete:
+     */
 
     @Override
     public void finish() {

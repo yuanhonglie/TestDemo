@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.view.ActionMode;
 
 import com.example.homlee.rxjava.ActivityEvent;
+import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.trello.rxlifecycle2.RxLifecycle;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -55,21 +57,8 @@ public class BaseActivity extends Activity {
         lifeSubject.onNext(ActivityEvent.DESTORY);
     }
 
-    protected  <T> ObservableTransformer<T, T> bindUntilEvent(final ActivityEvent bindEvent) {
-        //被监视的Observable
-        final Observable<ActivityEvent> subject = lifeSubject.takeUntil(new Predicate<ActivityEvent>() {
-            @Override
-            public boolean test(ActivityEvent event) {
-                return event.equals(bindEvent);
-            }
-        });
-
-        return new ObservableTransformer<T, T>() {
-            @Override
-            public ObservableSource<T> apply(Observable<T> observable) {
-                return observable.takeUntil(subject);
-            }
-        };
+    protected <T> LifecycleTransformer<T> bindUntilEvent(ActivityEvent bindEvent) {
+        return RxLifecycle.bindUntilEvent(lifeSubject, bindEvent);
     }
 
     protected void startActivity(Class<? extends Activity> clazz) {
