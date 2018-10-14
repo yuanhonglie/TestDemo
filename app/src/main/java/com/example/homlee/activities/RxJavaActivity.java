@@ -355,6 +355,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                     }
                 })
                 .observeOn(Schedulers.from(mExecutor2))
+                .subscribeOn(Schedulers.from(mExecutor2))
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {
@@ -395,14 +396,14 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
     I/RxJavaActivity: filter:test: integer  = 1
     I/RxJavaActivity: map:apply: Thread = rx-t1
     I/RxJavaActivity: map:apply: integer  = 1
+    I/RxJavaActivity: onNext: Thread = rx-t2
+    I/RxJavaActivity: onNext: string:1
     I/RxJavaActivity: filter:test: Thread = rx-t1
     I/RxJavaActivity: filter:test: integer  = 2
     I/RxJavaActivity: filter:test: Thread = rx-t1
     I/RxJavaActivity: filter:test: integer  = 3
     I/RxJavaActivity: map:apply: Thread = rx-t1
     I/RxJavaActivity: map:apply: integer  = 3
-    I/RxJavaActivity: onNext: Thread = rx-t2
-    I/RxJavaActivity: onNext: string:1
     I/RxJavaActivity: onNext: Thread = rx-t2
     I/RxJavaActivity: onNext: string:3
     I/RxJavaActivity: onComplete:
