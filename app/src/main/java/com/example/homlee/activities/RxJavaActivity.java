@@ -56,6 +56,8 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.btn_rx_sample7).setOnClickListener(this);
         findViewById(R.id.btn_rx_sample8).setOnClickListener(this);
         findViewById(R.id.btn_rx_sample9).setOnClickListener(this);
+        findViewById(R.id.btn_rx_sample10).setOnClickListener(this);
+        findViewById(R.id.btn_rx_sample11).setOnClickListener(this);
         initExecutors();
     }
 
@@ -107,6 +109,12 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.btn_rx_sample9:
                 rxJavaSample9();
+                break;
+            case R.id.btn_rx_sample10:
+                rxJavaSample10();
+                break;
+            case R.id.btn_rx_sample11:
+                rxJavaSample11();
                 break;
             default:
                 break;
@@ -542,6 +550,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
     /*
     I/RxJavaActivity: rxJavaSample8: start
+<<<<<<< Updated upstream
     I/RxJavaActivity: filter.test: 1
     I/RxJavaActivity: filter.test: 2
     I/RxJavaActivity: filter.test: 3
@@ -602,6 +611,78 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 });
         Log.i(TAG, "rxJavaSample9: end");
     }
+
+    private Observable<String> getObserable1() {
+        return Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                for (int i = 0; i < 5; i++) {
+                    if (i == 2) {
+                        Thread.sleep(10);
+                    }
+                    emitter.onNext("Observable1-" + i);
+                }
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.from(mExecutor1));
+    }
+
+    private Observable<String> getObservable2() {
+        return Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                for (int i = 0; i < 3; i++) {
+                    if (i == 2) {
+                        Thread.sleep(30);
+                    }
+                    emitter.onNext("Observable2-" + i);
+                }
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.from(mExecutor2));
+    }
+
+    private void rxJavaSample10() {
+        Observable.concat(getObserable1(), getObservable2())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String text) throws Exception {
+                        Log.i(TAG, "Consumer.accept: integer = " + text + ", Thread = " + Thread.currentThread().getName());
+                    }
+                });
+    }
+
+    /*
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-0, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-1, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-2, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-3, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-4, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable2-0, Thread = rx-t2
+    I/RxJavaActivity: Consumer.accept: integer = Observable2-1, Thread = rx-t2
+    I/RxJavaActivity: Consumer.accept: integer = Observable2-2, Thread = rx-t2
+     */
+
+    private void rxJavaSample11() {
+        Observable.merge(getObserable1(), getObservable2())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String text) throws Exception {
+                        Log.i(TAG, "Consumer.accept: integer = " + text + ", Thread = " + Thread.currentThread().getName());
+                    }
+                });
+    }
+    
+    /*
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-0, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-1, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable2-0, Thread = rx-t2
+    I/RxJavaActivity: Consumer.accept: integer = Observable2-1, Thread = rx-t2
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-2, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-3, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable1-4, Thread = rx-t1
+    I/RxJavaActivity: Consumer.accept: integer = Observable2-2, Thread = rx-t2
+     */
 
     @Override
     public void finish() {

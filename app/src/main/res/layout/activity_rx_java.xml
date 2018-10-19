@@ -56,6 +56,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rx_sample9"/>
+            <Button
+                android:id="@+id/btn_rx_sample10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rx_sample10"/>
+            <Button
+                android:id="@+id/btn_rx_sample11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rx_sample11"/>
         </LinearLayout>
     </ScrollView>
 
