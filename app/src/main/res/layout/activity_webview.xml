@@ -15,7 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="https://www.baidu.com/"/>
+            android:text="https://royole.myshopify.com/19218429/checkouts/3e4a5cf9b1ca0f0c70be8b6112d2f873?key=684a719ce673c71314ffb02cdeb9f86c"/>
 
         <Button
             android:id="@+id/btn_go"

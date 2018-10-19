@@ -9,15 +9,21 @@ import android.view.View;
 import com.example.homlee.R;
 import com.example.homlee.rxjava.ActivityEvent;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
@@ -48,6 +54,8 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.btn_rx_sample5).setOnClickListener(this);
         findViewById(R.id.btn_rx_sample6).setOnClickListener(this);
         findViewById(R.id.btn_rx_sample7).setOnClickListener(this);
+        findViewById(R.id.btn_rx_sample8).setOnClickListener(this);
+        findViewById(R.id.btn_rx_sample9).setOnClickListener(this);
         initExecutors();
     }
 
@@ -93,6 +101,12 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.btn_rx_sample7:
                 rxJavaSample7();
+                break;
+            case R.id.btn_rx_sample8:
+                rxJavaSample8();
+                break;
+            case R.id.btn_rx_sample9:
+                rxJavaSample9();
                 break;
             default:
                 break;
@@ -488,6 +502,106 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
     I/RxJavaActivity: onNext: string:5
     I/RxJavaActivity: onComplete:
      */
+
+    private void rxJavaSample8() {
+        Log.i(TAG, "rxJavaSample8: start");
+        Integer[] integers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        List<Integer> list = Arrays.asList(integers);
+        Observable.just(list)
+                .compose(this.<List<Integer>>bindUntilEvent(ActivityEvent.DESTORY))
+                .flatMap(new Function<List<Integer>, ObservableSource<Integer>>() {
+                    @Override
+                    public ObservableSource<Integer> apply(List<Integer> list) throws Exception {
+                        return Observable.fromIterable(list);
+                    }
+                })
+                .filter(new Predicate<Integer>() {
+                    @Override
+                    public boolean test(Integer integer) throws Exception {
+                        Log.i(TAG, "filter.test: " + integer);
+                        return integer > 5;
+                    }
+                })
+                .take(3)
+                .map(new Function<Integer, String>() {
+                    @Override
+                    public String apply(Integer integer) {
+                        Log.i(TAG, "map.apply: " + integer);
+                        int power = integer * integer;
+                        return "power of " + integer + " is " + power;
+                    }
+                })
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.i(TAG, "Consumer.accept: " + s);
+                    }
+                });
+        Log.i(TAG, "rxJavaSample8: end");
+    }
+
+    /*
+    I/RxJavaActivity: rxJavaSample8: start
+    I/RxJavaActivity: filter.test: 1
+    I/RxJavaActivity: filter.test: 2
+    I/RxJavaActivity: filter.test: 3
+    I/RxJavaActivity: filter.test: 4
+    I/RxJavaActivity: filter.test: 5
+    I/RxJavaActivity: filter.test: 6
+    I/RxJavaActivity: map.apply: 6
+    I/RxJavaActivity: Consumer.accept: power of 6 is 36
+    I/RxJavaActivity: filter.test: 7
+    I/RxJavaActivity: map.apply: 7
+    I/RxJavaActivity: Consumer.accept: power of 7 is 49
+    I/RxJavaActivity: filter.test: 8
+    I/RxJavaActivity: map.apply: 8
+    I/RxJavaActivity: Consumer.accept: power of 8 is 64
+    I/RxJavaActivity: rxJavaSample8: end
+     */
+
+
+    private void rxJavaSample9() {
+        Log.i(TAG, "rxJavaSample9: start");
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+                        @Override
+                        public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+                            try {
+                                for (int i = 0; i < 10; i++) {
+                                    emitter.onNext(i);
+                                    if (i == 8) {
+                                        throw new RuntimeException("Test onError");
+                                    }
+                                }
+                                emitter.onComplete();
+                            } catch (Exception e) {
+                                emitter.onError(e);
+                            }
+                        }
+                })
+                .compose(this.<Integer>bindUntilEvent(ActivityEvent.DESTORY))
+                .filter(new Predicate<Integer>() {
+                    @Override
+                    public boolean test(Integer integer) throws Exception {
+                        Log.i(TAG, "filter.test: " + integer);
+                        return integer > 5;
+                    }
+                })
+                .map(new Function<Integer, String>() {
+                    @Override
+                    public String apply(Integer integer) {
+                        Log.i(TAG, "map.apply: " + integer);
+                        int power = integer * integer;
+                        return "power of " + integer + " is " + power;
+                    }
+                })
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.i(TAG, "onNext.accept: " + s);
+                    }
+                });
+        Log.i(TAG, "rxJavaSample9: end");
+    }
 
     @Override
     public void finish() {

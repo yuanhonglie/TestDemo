@@ -3,6 +3,7 @@ package com.example.homlee.widgets;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,6 +11,8 @@ import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.homlee.R;
 
 /**
  * Created by homlee on 2018/6/22.
@@ -37,10 +40,15 @@ public class FocusIndicator extends View {
 
     public FocusIndicator(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init(context, attrs);
     }
 
-    private void init(Context ctx) {
+    private void init(Context ctx, AttributeSet attrs) {
+        TypedArray ta = ctx.obtainStyledAttributes(attrs, R.styleable.FocusIndicator);
+        mBackgroundColor = ta.getColor(R.styleable.FocusIndicator_backgroundColor, 0xffcecece);
+        mForegroundColor = ta.getColor(R.styleable.FocusIndicator_foregroundColor, Color.BLACK);
+        ta.recycle();  //注意回收
+
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
@@ -77,11 +85,17 @@ public class FocusIndicator extends View {
 
     @Override
     public void setBackgroundColor(int color) {
-
+        if (color != mBackgroundColor) {
+            mBackgroundColor = color;
+            invalidate();
+        }
     }
 
     public void setForegroundColor(int color) {
-
+        if (color != mForegroundColor) {
+            mForegroundColor = color;
+            invalidate();
+        }
     }
 
     public void setProgress(float progress) {

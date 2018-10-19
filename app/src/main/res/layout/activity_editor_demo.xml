@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/parent"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+              xmlns:fi="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/parent"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="20dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
         android:text="EditText Focus Change Test"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <LinearLayout
         android:id="@+id/wrapper_editor1"
@@ -33,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"/>
 
             <ImageView
                 android:id="@+id/iv_delete"
@@ -45,7 +46,9 @@
         <com.example.homlee.widgets.FocusIndicator
             android:id="@+id/fi_indicator1"
             android:layout_width="match_parent"
-            android:layout_height="2dp"/>
+            android:layout_height="2dp"
+            fi:backgroundColor="#cecece"
+            fi:foregroundColor="@android:color/holo_red_light"/>
     </LinearLayout>
 
     <LinearLayout
@@ -67,7 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"/>
 
             <ImageView
                 android:id="@+id/iv_eye"
@@ -79,7 +82,9 @@
         <com.example.homlee.widgets.FocusIndicator
             android:id="@+id/fi_indicator2"
             android:layout_width="match_parent"
-            android:layout_height="2dp"/>
+            android:layout_height="2dp"
+            fi:backgroundColor="#cecece"
+            fi:foregroundColor="@android:color/black"/>
     </LinearLayout>
 
 
