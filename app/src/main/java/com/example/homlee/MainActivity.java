@@ -1,6 +1,7 @@
 package com.example.homlee;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 
 import com.example.homlee.activities.BaseActivity;
@@ -8,6 +9,7 @@ import com.example.homlee.activities.OpenGLActivity;
 import com.example.homlee.activities.RxJavaActivity;
 import com.example.homlee.activities.UIActivity;
 import com.example.homlee.activities.WebViewActivity;
+import com.homlee.rxbus2.MessageManager;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -19,6 +21,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn_ui_effect).setOnClickListener(this);
         findViewById(R.id.btn_rx_java).setOnClickListener(this);
         findViewById(R.id.btn_webview).setOnClickListener(this);
+        initData();
+    }
+
+    private void initData() {
+        MessageManager.getInstance().sendMessage(0, "hello, world!");
     }
 
     @Override
