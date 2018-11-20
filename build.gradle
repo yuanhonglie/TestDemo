@@ -26,6 +26,10 @@ allprojects {
         google()
         jcenter()
         maven {
+            url uri('../repository')
+            name 'repo'
+        }
+        maven {
             url 'https://maven.google.com/'
             name 'Google'
         }
