@@ -11,32 +11,37 @@
         android:stretchColumns="0,1,2,3,4,5,6,7">
         <TableRow>
             <TextView
+                android:id="@+id/tv_out_west_ab1"
                 style="@style/table_text_view"
-                android:text="B-1"/>
+                android:text="B-2"/>
             <TextView
                 style="@style/table_text_view"
                 android:text="A-2"/>
             <TextView
                 style="@style/table_text_view"
-                android:text="A-2"/>
+                android:text="A-1"/>
             <TextView
-                style="@style/table_text_view"
-                android:text="B-2"/>
-            <TextView
+                android:id="@+id/tv_out_east_d1"
                 style="@style/table_text_view"
                 android:text="B-1"/>
             <TextView
-                style="@style/table_text_view"
-                android:text="A-1"/>
-            <TextView
-                style="@style/table_text_view"
-                android:text="A-1"/>
-            <TextView
+                android:id="@+id/tv_out_east_ab1"
                 style="@style/table_text_view"
                 android:text="B-2"/>
+            <TextView
+                style="@style/table_text_view"
+                android:text="A-2"/>
+            <TextView
+                style="@style/table_text_view"
+                android:text="A-1"/>
+            <TextView
+                android:id="@+id/tv_out_west_d1"
+                style="@style/table_text_view"
+                android:text="B-1"/>
         </TableRow>
         <TableRow>
             <TextView
+                android:id="@+id/tv_out_west_ab2"
                 style="@style/table_text_view"
                 android:text="01(西)"/>
             <TextView
@@ -46,9 +51,11 @@
                 style="@style/table_text_view"
                 android:text="03(北)"/>
             <TextView
+                android:id="@+id/tv_out_east_d2"
                 style="@style/table_text_view"
                 android:text="04(东)"/>
             <TextView
+                android:id="@+id/tv_out_east_ab2"
                 style="@style/table_text_view"
                 android:text="05(东)"/>
             <TextView
@@ -58,6 +65,7 @@
                 style="@style/table_text_view"
                 android:text="07(南)"/>
             <TextView
+                android:id="@+id/tv_out_west_d2"
                 style="@style/table_text_view"
                 android:text="08(西)"/>
         </TableRow>

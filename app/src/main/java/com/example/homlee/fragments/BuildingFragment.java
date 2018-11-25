@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.homlee.R;
 import com.example.homlee.guanming.BookingHelper;
@@ -38,10 +39,14 @@ public class BuildingFragment extends Fragment {
     private static final String BUILDING_TYPE = "building";
     private static final int ROOM_PER_FLOOR = 8;
     private int mBuildingType;
+    private List<TextView> abOutTextViews = new ArrayList<>(4);
+    private List<TextView> dOutTextViews = new ArrayList<>(4);
     private RecyclerView mRecyclerView;
     private RoomAdapter mRoomAdapter;
     private CompositeDisposable mDisposables = new CompositeDisposable();
     private BookingHelper mBookingHelper;
+
+
     public static BuildingFragment newInstance(int position) {
         Bundle args = new Bundle();
         args.putInt(BUILDING_TYPE, position);
@@ -60,6 +65,25 @@ public class BuildingFragment extends Fragment {
 
     private void initView(View root) {
         mRecyclerView = root.findViewById(R.id.rv_rooms);
+        abOutTextViews.add(findTextView(root, R.id.tv_out_east_ab1));
+        abOutTextViews.add(findTextView(root, R.id.tv_out_east_ab2));
+        abOutTextViews.add(findTextView(root, R.id.tv_out_west_ab1));
+        abOutTextViews.add(findTextView(root, R.id.tv_out_west_ab2));
+        dOutTextViews.add(findTextView(root, R.id.tv_out_east_d1));
+        dOutTextViews.add(findTextView(root, R.id.tv_out_east_d2));
+        dOutTextViews.add(findTextView(root, R.id.tv_out_west_d1));
+        dOutTextViews.add(findTextView(root, R.id.tv_out_west_d2));
+    }
+
+    private void updateOutTextView(int buildingType) {
+        List<TextView> textViews = (buildingType == 2) ? dOutTextViews : abOutTextViews;
+        for (TextView tv : textViews) {
+            tv.setTextColor(getResources().getColor(R.color.com_text_red));
+        }
+    }
+
+    private TextView findTextView(View root, int id) {
+        return (TextView) root.findViewById(id);
     }
 
     @Override
@@ -104,6 +128,7 @@ public class BuildingFragment extends Fragment {
                     }
                 });
         mDisposables.add(disposable);
+        updateOutTextView(mBuildingType);
     }
 
     private List<Room> createRooms() {
