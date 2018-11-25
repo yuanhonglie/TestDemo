@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.homlee.R;
 import com.example.homlee.widgets.FocusIndicator;
 
-public class EditorEffectActivity extends Activity implements View.OnClickListener{
+public class EditorEffectActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText mAccountEt;
     private EditText mPasswordEt;

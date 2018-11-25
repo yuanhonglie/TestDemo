@@ -1,22 +1,18 @@
 package com.example.homlee.activities;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.ActionMode;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.homlee.rxjava.ActivityEvent;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.RxLifecycle;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.functions.Predicate;
 import io.reactivex.subjects.BehaviorSubject;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends AppCompatActivity {
     protected String TAG = "BaseActivity";
     protected final BehaviorSubject<ActivityEvent> lifeSubject = BehaviorSubject.create();
 
@@ -61,7 +57,7 @@ public class BaseActivity extends Activity {
         return RxLifecycle.bindUntilEvent(lifeSubject, bindEvent);
     }
 
-    protected void startActivity(Class<? extends Activity> clazz) {
+    protected void startActivity(Class<? extends AppCompatActivity> clazz) {
         Intent intent = new Intent();
         intent.setClass(this, clazz);
         startActivity(intent);

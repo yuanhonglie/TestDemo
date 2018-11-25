@@ -5,6 +5,7 @@ import android.os.Message;
 import android.view.View;
 
 import com.example.homlee.activities.BaseActivity;
+import com.example.homlee.activities.GuanMingActivity;
 import com.example.homlee.activities.OpenGLActivity;
 import com.example.homlee.activities.RxJavaActivity;
 import com.example.homlee.activities.UIActivity;
@@ -21,6 +22,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn_ui_effect).setOnClickListener(this);
         findViewById(R.id.btn_rx_java).setOnClickListener(this);
         findViewById(R.id.btn_webview).setOnClickListener(this);
+        findViewById(R.id.btn_guanming).setOnClickListener(this);
         initData();
     }
 
@@ -43,6 +45,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btn_webview:
                 startActivity(WebViewActivity.class);
                 break;
+            case R.id.btn_guanming:
+                startActivity(GuanMingActivity.class);
             default:
                 break;
         }

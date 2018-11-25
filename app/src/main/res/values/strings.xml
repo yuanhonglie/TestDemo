@@ -2,4 +2,16 @@
     <string name="app_name">TestDemo</string>
     <string name="hello_world">Hello, world!</string>
     <string name="dir_name">values</string>
+    <string name="label_building_name1">7栋A座</string>
+    <string name="label_building_name2">7栋B座</string>
+    <string name="label_building_name3">7栋D座</string>
+    <string name="dialog_msg_select_room">选择\"%s\"?</string>
+    <string name="dialog_msg_unselect_room">退选\"%s\"?</string>
+    <string name="dialog_confirm">确定</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_title_delete_all_data">确定删除所有选房信息？</string>
+    <string name="label_btn_clear_all_data">清除所有选房信息</string>
+    <string name="label_btn_load_assets_data">加载已选房信息</string>
+    <string name="label_btn_analyse_data">分析选房信息</string>
+    <string name="label_btn_recommend">推荐选房信息</string>
 </resources>

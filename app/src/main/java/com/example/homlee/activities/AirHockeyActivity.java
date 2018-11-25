@@ -26,7 +26,7 @@ import javax.microedition.khronos.opengles.GL10;
  * Created by homlee on 2018/6/8.
  */
 
-public class AirHockeyActivity extends Activity {
+public class AirHockeyActivity extends BaseActivity {
 
     private GLSurfaceView mGLSurfaceView;
     private boolean rendererSet = false;
