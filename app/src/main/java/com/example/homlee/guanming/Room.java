@@ -20,7 +20,7 @@ public class Room {
     }
 
     private String generateRoomId() {
-        return String.format("%02d-%d%02d", building+1, level, num+1);
+        return String.format("%02d-%02d%02d", building+1, level, num+1);
     }
 
     public String getRoomId() {
