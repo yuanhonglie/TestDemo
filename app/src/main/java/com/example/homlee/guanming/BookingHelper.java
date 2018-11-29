@@ -29,7 +29,7 @@ public class BookingHelper {
     private Set<String> mBookedRooms;
     //"SUBJECT:(\\d+)=\\[(.+)\\]"
     //TODO 根据数据修改匹配模板
-    private static final String GUANMING_ROOM_PATTERN1 = ".*冠铭花园\\s+(7栋[ABD]座)\\s+(\\d+)(0\\d).*";
+    private static final String GUANMING_ROOM_PATTERN1 = ".*冠铭花园\\s+(7栋[ABD]座)(\\d+)(0\\d).*";
 
     private BookingHelper(Context context) {
         mDbHelper = new BookingDbHelper(context.getApplicationContext());
@@ -188,6 +188,10 @@ public class BookingHelper {
         mBuildingMap.put("7栋A座", 1);
         mBuildingMap.put("7栋B座", 2);
         mBuildingMap.put("7栋D座", 3);
+    }
+
+    public Set<String> getSelectedRooms() {
+        return mBookedRooms;
     }
 
     public void destory() {

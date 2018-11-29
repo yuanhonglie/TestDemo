@@ -13,13 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.homlee.R;
 import com.example.homlee.Utils.ListUtils;
 import com.example.homlee.fragments.BuildingFragment;
 import com.example.homlee.guanming.BookingHelper;
+import com.example.homlee.guanming.Room;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -66,6 +69,7 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
         findViewById(R.id.btn_load).setOnClickListener(this);
         findViewById(R.id.btn_analyse).setOnClickListener(this);
         findViewById(R.id.btn_recommend).setOnClickListener(this);
+        findViewById(R.id.btn_selected_count).setOnClickListener(this);
 
         //添加页卡视图
         mViewList.add(view1);
@@ -102,9 +106,18 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.btn_recommend:
                 break;
+            case R.id.btn_selected_count:
+                showSelectedRoomNum();
+                break;
             default:
                 break;
         }
+    }
+
+    private void showSelectedRoomNum() {
+        Set<String> rooms = BookingHelper.getInstance().getSelectedRooms();
+        Toast.makeText(this, getString(R.string.tip_selected_room_num) + rooms.size(), Toast.LENGTH_SHORT).show();
+
     }
 
     private void loadReservationData() {

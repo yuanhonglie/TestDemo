@@ -14,4 +14,6 @@
     <string name="label_btn_load_assets_data">加载已选房信息</string>
     <string name="label_btn_analyse_data">分析选房信息</string>
     <string name="label_btn_recommend">推荐选房信息</string>
+    <string name="tip_selected_room_num">已选房数：</string>
+    <string name="label_btn_selected_num">已选房数</string>
 </resources>
