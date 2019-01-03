@@ -29,6 +29,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         mRooms = list;
     }
 
+    public void setData(List<Room> list) {
+        mRooms = list;
+        //notifyDataSetChanged();
+    }
+
     public List<Room> getData() {
         return mRooms;
     }

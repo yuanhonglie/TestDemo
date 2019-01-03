@@ -62,6 +62,7 @@
         android:id="@+id/btn_selected_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_btn_selected_num"/>
+        android:text="@string/label_btn_selected_num"
+        android:visibility="gone"/>
 
 </LinearLayout>

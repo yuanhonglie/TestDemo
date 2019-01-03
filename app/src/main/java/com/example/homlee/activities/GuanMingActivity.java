@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,13 +19,13 @@ import android.widget.Toast;
 import com.example.homlee.R;
 import com.example.homlee.Utils.ListUtils;
 import com.example.homlee.fragments.BuildingFragment;
-import com.example.homlee.guanming.BookingHelper;
-import com.example.homlee.guanming.Room;
+import com.example.homlee.guanming.Candidate;
+import com.example.homlee.guanming.DataHelper;
+import com.example.homlee.guanming.SelectedRoom;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -59,7 +60,7 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initData() {
-        BookingHelper.initialize(this);
+        DataHelper.initialize(this);
     }
 
     private void initView() {
@@ -83,6 +84,27 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
         mViewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager(), mFragmentList));
         mViewPager.setOffscreenPageLimit(3);
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
+
+        Disposable disposable = Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                DataHelper.getInstance().loadAllData();
+                emitter.onNext(true);
+                emitter.onComplete();
+            }
+        })
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean roomList) throws Exception {
+                        for (BuildingFragment fragment : mFragmentList) {
+                            fragment.refreshAfterDataSetChanged();
+                        }
+
+                    }
+                });
+        mDisposables.add(disposable);
     }
 
     private List<BuildingFragment> createFragments() {
@@ -103,8 +125,10 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
                 loadReservationData();
                 break;
             case R.id.btn_analyse:
+                loadCandidatesData();
                 break;
             case R.id.btn_recommend:
+                testCandidates();
                 break;
             case R.id.btn_selected_count:
                 showSelectedRoomNum();
@@ -115,7 +139,7 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void showSelectedRoomNum() {
-        Set<String> rooms = BookingHelper.getInstance().getSelectedRooms();
+        Collection<SelectedRoom> rooms = DataHelper.getInstance().getSelectedRooms();
         Toast.makeText(this, getString(R.string.tip_selected_room_num) + rooms.size(), Toast.LENGTH_SHORT).show();
 
     }
@@ -124,9 +148,9 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
         Disposable disposable = Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-                BookingHelper.getInstance().clearAllData();
-                Set<String> roomIds = BookingHelper.getInstance().loadDataFromAsset(GuanMingActivity.this);
-                BookingHelper.getInstance().reserveRooms(roomIds);
+                DataHelper.getInstance().clearAllData();
+                Collection<SelectedRoom> roomIds = DataHelper.getInstance().loadDataFromAsset(GuanMingActivity.this);
+                DataHelper.getInstance().reserveRooms(roomIds);
                 emitter.onNext(true);
                 emitter.onComplete();
             }
@@ -142,6 +166,34 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
                     }
                 });
         mDisposables.add(disposable);
+    }
+
+    private void loadCandidatesData() {
+        Disposable disposable = Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                DataHelper.getInstance().deleteAllCandidates();
+                boolean success = DataHelper.getInstance().loadCandidatesFromAsset(GuanMingActivity.this);
+                emitter.onNext(success);
+                emitter.onComplete();
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean result) throws Exception {
+                        Toast.makeText(GuanMingActivity.this, result ? R.string.load_candidates_completed : R.string.load_candidates_failed, Toast.LENGTH_SHORT).show();
+                    }
+                });
+        mDisposables.add(disposable);
+    }
+
+    private void testCandidates() {
+        List<Candidate> candidates = DataHelper.getInstance().getCandidatesBySeqNum("BHR012256");
+        for (Candidate candidate : candidates) {
+            Log.i(TAG, "testCandidates: " + candidate);
+        }
     }
 
 
@@ -168,7 +220,7 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
         Disposable disposable = Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-                BookingHelper.getInstance().clearAllData();
+                DataHelper.getInstance().clearAllData();
                 emitter.onNext(true);
                 emitter.onComplete();
             }
@@ -218,6 +270,6 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
     protected void onDestroy() {
         super.onDestroy();
         mDisposables.dispose();
-        BookingHelper.getInstance().destory();
+        DataHelper.getInstance().destory();
     }
 }

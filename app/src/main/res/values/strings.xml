@@ -16,4 +16,6 @@
     <string name="label_btn_recommend">推荐选房信息</string>
     <string name="tip_selected_room_num">已选房数：</string>
     <string name="label_btn_selected_num">已选房数</string>
+    <string name="load_candidates_completed">认租人信息加载完毕!</string>
+    <string name="load_candidates_failed">认租人信息加载失败!</string>
 </resources>
