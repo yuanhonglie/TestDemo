@@ -38,6 +38,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="GuanMing"/>
+            <Button
+                android:id="@+id/btn_floatview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FloatView"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
