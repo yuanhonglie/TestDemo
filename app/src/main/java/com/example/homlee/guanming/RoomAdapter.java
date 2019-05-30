@@ -1,8 +1,8 @@
 package com.example.homlee.guanming;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.homlee.R;
 import com.example.homlee.Utils.ListUtils;
-import com.example.homlee.fragments.BuildingFragment;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import android.content.pm.ConfigurationInfo;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.Toast;
 
 import javax.microedition.khronos.egl.EGLConfig;

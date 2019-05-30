@@ -3,7 +3,7 @@ package com.example.homlee.activities;
 import android.app.AlertDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
