@@ -43,6 +43,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FloatView"/>
+            <Button
+                android:id="@+id/btn_mvp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mvp"/>
+            <Button
+                android:id="@+id/btn_mvp_viewmodel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mvp_viewmodel"/>
+            <Button
+                android:id="@+id/btn_mvp_livedata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mvp_livedata"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

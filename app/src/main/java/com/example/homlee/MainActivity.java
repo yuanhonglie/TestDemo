@@ -20,6 +20,7 @@ import com.example.homlee.activities.OpenGLActivity;
 import com.example.homlee.activities.RxJavaActivity;
 import com.example.homlee.activities.UIActivity;
 import com.example.homlee.activities.WebViewActivity;
+import com.example.homlee.mvp.SimpleMVPActivity;
 import com.homlee.rxbus2.MessageManager;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -35,6 +36,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn_webview).setOnClickListener(this);
         findViewById(R.id.btn_guanming).setOnClickListener(this);
         findViewById(R.id.btn_floatview).setOnClickListener(this);
+        findViewById(R.id.btn_mvp).setOnClickListener(this);
+        findViewById(R.id.btn_mvp_viewmodel).setOnClickListener(this);
+        findViewById(R.id.btn_mvp_livedata).setOnClickListener(this);
         initData();
         Log.i(TAG, "onCreate: isTest = " + BuildConfig.isTest);
     }
@@ -63,6 +67,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn_floatview:
                 requestFloatViewPermission();
+                break;
+            case R.id.btn_mvp:
+                startActivity(SimpleMVPActivity.class);
+                break;
+            case R.id.btn_mvp_viewmodel:
+                break;
+            case R.id.btn_mvp_livedata:
                 break;
             default:
                 break;
