@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
@@ -20,7 +19,7 @@ import com.example.homlee.activities.OpenGLActivity;
 import com.example.homlee.activities.RxJavaActivity;
 import com.example.homlee.activities.UIActivity;
 import com.example.homlee.activities.WebViewActivity;
-import com.example.homlee.mvp.SimpleMVPActivity;
+import com.example.homlee.mvp.SimpleLoginMVPActivity;
 import com.homlee.rxbus2.MessageManager;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -69,7 +68,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 requestFloatViewPermission();
                 break;
             case R.id.btn_mvp:
-                startActivity(SimpleMVPActivity.class);
+                startActivity(SimpleLoginMVPActivity.class);
                 break;
             case R.id.btn_mvp_viewmodel:
                 break;

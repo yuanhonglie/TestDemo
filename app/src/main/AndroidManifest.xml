@@ -30,8 +30,9 @@
         <activity android:name=".activities.RxJavaActivity"/>
         <activity android:name=".activities.WebViewActivity"/>
         <activity android:name=".activities.GuanMingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".mvp.SimpleMVPActivity"/>
+            android:screenOrientation="portrait"
+            android:configChanges=""/>
+        <activity android:name=".mvp.SimpleLoginMVPActivity"/>
     </application>
 
 </manifest>

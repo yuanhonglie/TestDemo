@@ -1,10 +1,9 @@
 package com.example.homlee.mvp;
 
 import com.example.homlee.mvp.model.User;
-import com.example.homlee.mvp.util.LoginHelper;
-import io.reactivex.Observable;
+import com.example.homlee.mvp.model.LoginHelper;
+
 import io.reactivex.ObservableSource;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -34,7 +33,7 @@ public class SimpleLoginPresenter implements SimpleLoginContract.Presenter {
                         if (!aBoolean) {
                             hideLoading();
                             if (mView != null) {
-                                mView.onError("用户名不存在!");
+                                mView.showError("用户名不存在!");
                             }
                         }
                         return aBoolean;
@@ -54,7 +53,7 @@ public class SimpleLoginPresenter implements SimpleLoginContract.Presenter {
                     public void accept(User user) throws Exception {
                         hideLoading();
                         if (mView != null) {
-                            mView.onSuccess(user);
+                            mView.showSuccess();
                         }
                     }
                 }, new Consumer<Throwable>() {
@@ -62,7 +61,7 @@ public class SimpleLoginPresenter implements SimpleLoginContract.Presenter {
                     public void accept(Throwable throwable) throws Exception {
                         hideLoading();
                         if (mView != null) {
-                            mView.onError("用户名不存在!!");
+                            mView.showError("用户名不存在!!");
                         }
                     }
                 });

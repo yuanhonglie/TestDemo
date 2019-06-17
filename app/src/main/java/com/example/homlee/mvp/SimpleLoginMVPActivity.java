@@ -1,6 +1,7 @@
 package com.example.homlee.mvp;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -16,7 +17,7 @@ import com.example.homlee.mvp.model.User;
 /**
  * @author leo.yuan
  */
-public class SimpleMVPActivity extends BaseActivity implements View.OnClickListener, SimpleLoginContract.View {
+public class SimpleLoginMVPActivity extends BaseActivity implements View.OnClickListener, SimpleLoginContract.View {
     private SimpleLoginContract.Presenter mPresenter;
     private TextView mTextView;
     private EditText mUsername;
@@ -28,6 +29,16 @@ public class SimpleMVPActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.layout.activity_mvp);
         initData();
         initView();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     private void initData() {
@@ -69,12 +80,12 @@ public class SimpleMVPActivity extends BaseActivity implements View.OnClickListe
     }
 
     @Override
-    public void onError(String message) {
+    public void showError(String message) {
         mTextView.setText("出错了！" + message);
     }
 
     @Override
-    public void onSuccess(User user) {
-        mTextView.setText("登陆成功！用户信息：" + user);
+    public void showSuccess() {
+        mTextView.setText("登陆成功！");
     }
 }

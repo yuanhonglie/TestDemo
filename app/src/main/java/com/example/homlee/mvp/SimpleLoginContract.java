@@ -1,7 +1,5 @@
 package com.example.homlee.mvp;
 
-import com.example.homlee.mvp.model.User;
-
 public interface SimpleLoginContract {
 
     interface View {
@@ -19,13 +17,12 @@ public interface SimpleLoginContract {
          * 登陆过程发生错误
          * @param message 错误信息
          */
-        void onError(String message);
+        void showError(String message);
 
         /**
          * 登陆成功
-         * @param user 用户信息
          */
-        void onSuccess(User user);
+        void showSuccess();
     }
 
     interface Presenter {

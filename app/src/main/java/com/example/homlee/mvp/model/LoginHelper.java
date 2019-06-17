@@ -1,4 +1,4 @@
-package com.example.homlee.mvp.util;
+package com.example.homlee.mvp.model;
 
 import com.example.homlee.mvp.model.User;
 
