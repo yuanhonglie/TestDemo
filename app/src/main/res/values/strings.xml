@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TestDemo</string>
+    <string name="res_value_dir">values</string>
     <string name="hello_world">Hello, world!</string>
     <string name="dir_name">values</string>
     <string name="label_building_name1">7栋A座</string>

@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.homlee.activities.BaseActivity;
+import com.example.homlee.activities.UIAdaptationActivity;
 import com.example.homlee.activities.GuanMingActivity;
 import com.example.homlee.activities.OpenGLActivity;
 import com.example.homlee.activities.RxJavaActivity;
@@ -38,6 +39,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn_mvp).setOnClickListener(this);
         findViewById(R.id.btn_mvp_viewmodel).setOnClickListener(this);
         findViewById(R.id.btn_mvp_livedata).setOnClickListener(this);
+        findViewById(R.id.btn_ui_adaptation).setOnClickListener(this);
         initData();
         Log.i(TAG, "onCreate: isTest = " + BuildConfig.isTest);
     }
@@ -73,6 +75,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btn_mvp_viewmodel:
                 break;
             case R.id.btn_mvp_livedata:
+                break;
+            case R.id.btn_ui_adaptation:
+                startActivity(UIAdaptationActivity.class);
                 break;
             default:
                 break;

@@ -58,6 +58,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="mvp_livedata"/>
+            <Button
+                android:id="@+id/btn_ui_adaptation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UI_adaptation"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
