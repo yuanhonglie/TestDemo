@@ -1,7 +1,12 @@
 package com.example.homlee.mvp;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+
 import com.example.homlee.mvp.model.User;
 import com.example.homlee.mvp.model.LoginHelper;
+import com.homlee.mvp.base.BasePresenter;
 
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -14,10 +19,10 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * @author leo.yuan
  */
-public class SimpleLoginPresenter implements SimpleLoginContract.Presenter {
-    SimpleLoginContract.View mView;
-    public SimpleLoginPresenter(SimpleLoginContract.View view) {
-        mView = view;
+public class SimpleLoginPresenter extends BasePresenter<SimpleLoginContract.Presenter, SimpleLoginContract.View> implements SimpleLoginContract.Presenter {
+
+    public SimpleLoginPresenter(@NonNull Application application) {
+        super(application);
     }
 
     @Override

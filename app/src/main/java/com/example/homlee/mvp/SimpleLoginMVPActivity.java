@@ -12,13 +12,12 @@ import androidx.annotation.Nullable;
 
 import com.example.homlee.R;
 import com.example.homlee.activities.BaseActivity;
-import com.example.homlee.mvp.model.User;
+import com.homlee.mvp.base.BaseMvpActivity;
 
 /**
  * @author leo.yuan
  */
-public class SimpleLoginMVPActivity extends BaseActivity implements View.OnClickListener, SimpleLoginContract.View {
-    private SimpleLoginContract.Presenter mPresenter;
+public class SimpleLoginMVPActivity extends BaseMvpActivity<SimpleLoginPresenter> implements View.OnClickListener, SimpleLoginContract.View {
     private TextView mTextView;
     private EditText mUsername;
     private EditText mPassword;
@@ -42,7 +41,6 @@ public class SimpleLoginMVPActivity extends BaseActivity implements View.OnClick
     }
 
     private void initData() {
-        mPresenter = new SimpleLoginPresenter(this);
     }
 
     private void initView() {

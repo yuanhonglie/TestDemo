@@ -1,8 +1,11 @@
 package com.example.homlee.mvp;
 
+import com.homlee.mvp.base.IPresenter;
+import com.homlee.mvp.base.IView;
+
 public interface SimpleLoginContract {
 
-    interface View {
+    interface View extends IView {
         /**
          * 显示登陆进度条
          */
@@ -25,7 +28,7 @@ public interface SimpleLoginContract {
         void showSuccess();
     }
 
-    interface Presenter {
+    interface Presenter extends IPresenter<View> {
 
         /**
          * 登陆
