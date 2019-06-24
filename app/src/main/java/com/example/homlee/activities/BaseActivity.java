@@ -7,12 +7,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.homlee.rxjava.ActivityEvent;
+import com.homlee.mvp.base.BaseMvpActivity;
+import com.homlee.mvp.base.BasePresenter;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.RxLifecycle;
 
 import io.reactivex.subjects.BehaviorSubject;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends BaseMvpActivity<BasePresenter> {
     protected String TAG = "BaseActivity";
     protected final BehaviorSubject<ActivityEvent> lifeSubject = BehaviorSubject.create();
 

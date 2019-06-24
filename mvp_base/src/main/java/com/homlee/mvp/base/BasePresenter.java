@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 /**
  * @author leo.yuan
  */
-public class BasePresenter<P extends IPresenter, V extends IView> extends AndroidViewModel {
+public class BasePresenter<P extends IPresenter, V extends IView> extends AndroidViewModel implements IPresenter<V> {
 
     protected V mView;
 

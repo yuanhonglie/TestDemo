@@ -21,17 +21,20 @@ public class BaseMvpActivity<T extends BasePresenter> extends AppCompatActivity 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bindPresenter();
+        rBindPresenter(getClass());
     }
 
-    private void bindPresenter() {
-        Type type = this.getClass().getGenericSuperclass();
-        ParameterizedType pt = (ParameterizedType) type;
-        Type[] types = pt.getActualTypeArguments();
-        if (types != null && types.length > 0) {
-            Class<T> clazz = (Class<T>) (types[0]);
-            mPresenter = bindPresenter(clazz);
-            onBindPresenter();
+    private void bindPresenter(ParameterizedType type) {
+        mPresenter = bindPresenter((Class<T>) (type).getActualTypeArguments()[0]);
+        onBindPresenter();
+    }
+
+    private void rBindPresenter(Class<?> clazz) {
+        Class<?> superClazz = clazz.getSuperclass();
+        if (superClazz.equals(BaseMvpActivity.class)) {
+            bindPresenter((ParameterizedType) clazz.getGenericSuperclass());
+        } else if (!superClazz.equals(Object.class)) {
+            rBindPresenter(superClazz);
         }
     }
 
