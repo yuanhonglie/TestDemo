@@ -17,7 +17,7 @@ import com.homlee.mvp.base.BaseMvpActivity;
 /**
  * @author leo.yuan
  */
-public class SimpleLoginMVPActivity extends BaseMvpActivity<SimpleLoginPresenter> implements View.OnClickListener, SimpleLoginContract.View {
+public class SimpleLoginMVPActivity extends MediatorActivity<SimpleLoginPresenter> implements View.OnClickListener, SimpleLoginContract.View {
     private TextView mTextView;
     private EditText mUsername;
     private EditText mPassword;
