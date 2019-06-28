@@ -41,7 +41,7 @@ public class BaseMvpFragment<T extends BasePresenter> extends Fragment implement
                         bindPresenterInner((Class) argType);
                         return;
                     } catch (ClassCastException e) {
-                        Log.e(TAG, "rBindPresenter: argType is NOT a subclass of BasePresenter");
+                        Log.e(TAG, "rBindPresenter: error = " + e.getMessage());
                     }
                 }
             }
@@ -52,7 +52,7 @@ public class BaseMvpFragment<T extends BasePresenter> extends Fragment implement
     }
 
     protected <P extends BasePresenter> P bindPresenter(Class<P> clazz) {
-        return (P) ViewModelProviders.of(this).get(clazz).bind(this);
+        return (P) ViewModelProviders.of(this).get(clazz).attachView(this);
     }
 
     protected void onBindPresenter() {
@@ -60,7 +60,7 @@ public class BaseMvpFragment<T extends BasePresenter> extends Fragment implement
     }
 
     private void unbindPresenter() {
-        mPresenter.unbind();
+        mPresenter.detachView();
         onUnbindPresenter();
     }
 

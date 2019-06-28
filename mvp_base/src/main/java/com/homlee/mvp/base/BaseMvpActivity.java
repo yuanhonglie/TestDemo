@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 
 /**
  * @author leo.yuan
@@ -32,7 +31,6 @@ public class BaseMvpActivity<T extends BasePresenter> extends AppCompatActivity 
     private void rBindPresenter(Class<?> clazz) {
         Class<?> superClazz = clazz.getSuperclass();
         Type superType = clazz.getGenericSuperclass();
-        Log.i(TAG, "rBindPresenter: clazz = " + clazz + ", superClazz = " + superClazz);
         if (superType instanceof ParameterizedType) {
             Type[] argTypes = ((ParameterizedType) superType).getActualTypeArguments();
             for (int i = 0; i < argTypes.length; i++) {
@@ -43,7 +41,7 @@ public class BaseMvpActivity<T extends BasePresenter> extends AppCompatActivity 
                         bindPresenterInner((Class) argType);
                         return;
                     } catch (ClassCastException e) {
-                        Log.e(TAG, "rBindPresenter: argType is NOT a subclass of BasePresenter");
+                        Log.i(TAG, "rBindPresenter: error = " + e.getMessage());
                     }
                 }
             }
@@ -54,7 +52,7 @@ public class BaseMvpActivity<T extends BasePresenter> extends AppCompatActivity 
     }
 
     protected <P extends BasePresenter> P bindPresenter(Class<P> clazz) {
-        return (P) ViewModelProviders.of(this).get(clazz).bind(this);
+        return (P) ViewModelProviders.of(this).get(clazz).attachView(this);
     }
 
     protected void onBindPresenter() {
@@ -63,7 +61,7 @@ public class BaseMvpActivity<T extends BasePresenter> extends AppCompatActivity 
 
     private void unbindPresenter() {
         if (mPresenter != null) {
-            mPresenter.unbind();
+            mPresenter.detachView();
             onUnbindPresenter();
         }
     }

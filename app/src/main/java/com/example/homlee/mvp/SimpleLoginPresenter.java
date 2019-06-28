@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.example.homlee.mvp.model.User;
 import com.example.homlee.mvp.model.LoginHelper;
 import com.homlee.mvp.base.BasePresenter;
+import com.homlee.mvp.base.PresenterEvent;
 
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -32,14 +33,13 @@ public class SimpleLoginPresenter extends BasePresenter<SimpleLoginContract.Pres
         LoginHelper.getLoginResultObservable(name, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .compose(this.<Boolean>bindUntilEvent(PresenterEvent.CLEAR))
                 .filter(new Predicate<Boolean>() {
                     @Override
                     public boolean test(Boolean aBoolean) throws Exception {
                         if (!aBoolean) {
                             hideLoading();
-                            if (mView != null) {
-                                mView.showError("用户名不存在!");
-                            }
+                            mView.showError("用户名不存在!");
                         }
                         return aBoolean;
                     }
@@ -57,30 +57,22 @@ public class SimpleLoginPresenter extends BasePresenter<SimpleLoginContract.Pres
                     @Override
                     public void accept(User user) throws Exception {
                         hideLoading();
-                        if (mView != null) {
-                            mView.showSuccess();
-                        }
+                        mView.showSuccess();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         hideLoading();
-                        if (mView != null) {
-                            mView.showError("用户名不存在!!");
-                        }
+                        mView.showError("用户名不存在!!");
                     }
                 });
     }
 
     public void showLoading() {
-        if (mView != null) {
-            mView.showLoading();
-        }
+        mView.showLoading();
     }
 
     public void hideLoading() {
-        if (mView != null) {
-            mView.hideLoading();
-        }
+        mView.hideLoading();
     }
 }
