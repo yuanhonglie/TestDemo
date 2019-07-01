@@ -33,7 +33,7 @@ public class SimpleLoginPresenter extends BasePresenter<SimpleLoginContract.Pres
         LoginHelper.getLoginResultObservable(name, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .compose(this.<Boolean>bindUntilEvent(PresenterEvent.CLEAR))
+                //.compose(this.<Boolean>bindUntilEvent(PresenterEvent.CLEAR))
                 .filter(new Predicate<Boolean>() {
                     @Override
                     public boolean test(Boolean aBoolean) throws Exception {

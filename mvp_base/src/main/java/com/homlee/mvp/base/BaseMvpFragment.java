@@ -70,7 +70,7 @@ public class BaseMvpFragment<T extends BasePresenter> extends Fragment implement
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         unbindPresenter();
+        super.onDestroy();
     }
 }

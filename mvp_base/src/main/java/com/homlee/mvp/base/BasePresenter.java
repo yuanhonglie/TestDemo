@@ -54,9 +54,14 @@ public class BasePresenter<P extends IPresenter, V extends IView> extends Androi
                     });
         }
 
-        sendLifecycleEvent(PresenterEvent.ATTACH);
-        onAttachView();
+        onAttachViewInner();
         return (P) this;
+    }
+
+    private void onAttachViewInner() {
+        sendLifecycleEvent(PresenterEvent.ATTACH);
+        PresenterLifecycle.getInstance().onAttachView(this);
+        onAttachView();
     }
 
     /**
@@ -102,7 +107,12 @@ public class BasePresenter<P extends IPresenter, V extends IView> extends Androi
             mViewRef = null;
         }
 
+        onDetachViewInner();
+    }
+
+    private void onDetachViewInner() {
         sendLifecycleEvent(PresenterEvent.DETACH);
+        PresenterLifecycle.getInstance().onDetachView(this);
         onDetachView();
     }
 
@@ -124,6 +134,10 @@ public class BasePresenter<P extends IPresenter, V extends IView> extends Androi
     @Override
     protected void onCleared() {
         super.onCleared();
+        onClearedInner();
+    }
+
+    private void onClearedInner() {
         sendLifecycleEvent(PresenterEvent.CLEAR);
         //解绑View
         if (mViewRef != null) {
@@ -132,6 +146,7 @@ public class BasePresenter<P extends IPresenter, V extends IView> extends Androi
         }
 
         mUiHandler.removeCallbacksAndMessages(null);
+        PresenterLifecycle.getInstance().onCleared(this);
     }
 
     protected final <T> LifecycleTransformer<T> bindUntilEvent(@NonNull PresenterEvent event) {

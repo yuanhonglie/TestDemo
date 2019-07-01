@@ -30,6 +30,6 @@ public class LoginHelper {
                 emitter.onNext(random.nextBoolean());
                 emitter.onComplete();
             }
-        }).delay(2, TimeUnit.SECONDS);
+        }).delay(300, TimeUnit.SECONDS);
     }
 }

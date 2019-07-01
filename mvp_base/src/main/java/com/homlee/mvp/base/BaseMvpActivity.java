@@ -72,7 +72,7 @@ public class BaseMvpActivity<T extends BasePresenter> extends AppCompatActivity 
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         unbindPresenter();
+        super.onDestroy();
     }
 }
