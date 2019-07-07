@@ -39,11 +39,15 @@ dependencies {
     implementation libraries.rxjava
     implementation libraries.rxandroid
     implementation libraries.retrofit
-    implementation libraries.rxjava_adapter
+    implementation libraries.retrofit_rxjava_adapter
     implementation libraries.rxlifecycle
     implementation (name: 'rxbus2-debug', ext: 'aar')
     implementation project(':mvp_base')
     debugImplementation libraries.leakcanary_fragment
     debugImplementation libraries.leakcanary_android
     releaseImplementation libraries.leakcanary_android_no_op
+    implementation libraries.okhttp
+    testImplementation libraries.okhttp_test
+    implementation libraries.dagger
+    annotationProcessor libraries.dagger_compiler
 }

@@ -32,6 +32,11 @@ public class BasePresenter<P extends IPresenter, V extends IView> extends Androi
 
     public BasePresenter(@NonNull Application application) {
         super(application);
+        onInit();
+    }
+
+    protected void onInit() {
+
     }
 
     public P attachView(V view) {
