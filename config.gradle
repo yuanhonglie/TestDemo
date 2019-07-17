@@ -8,9 +8,9 @@ ext {
     ]
 
     libversions = [
-            "retrofit"        : "2.4.0",
-            "okhttp"          : "4.0.0",
-            "leakcanary"      : "1.6.3",
+            retrofit        : "2.4.0",
+            okhttp          : "4.0.0",
+            leakcanary      : "1.6.3",
     ]
 
     dependencies = [
@@ -33,5 +33,7 @@ ext {
             "okhttp_test"                       : 'com.squareup.okhttp3:mockwebserver:4.0.0',
             "dagger"                            : 'com.google.dagger:dagger:2.23.2',
             "dagger_compiler"                   : 'com.google.dagger:dagger-compiler:2.23.2',
+            "arouter"                           : 'com.alibaba:arouter-api:1.5.0',
+            "arouter_compiler"                  : 'com.alibaba:arouter-compiler:1.2.2',
     ]
 }

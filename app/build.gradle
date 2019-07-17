@@ -14,6 +14,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "isTest", project.hasProperty('isTest') ? isTest : "\"empty\"")
         buildConfigField("boolean", "isNetworkDebug", "true")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -50,4 +56,6 @@ dependencies {
     testImplementation libraries.okhttp_test
     implementation libraries.dagger
     annotationProcessor libraries.dagger_compiler
+    implementation libraries.arouter
+    annotationProcessor libraries.arouter_compiler
 }
