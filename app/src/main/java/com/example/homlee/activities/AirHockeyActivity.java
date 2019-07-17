@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import android.widget.Toast;
 
 import com.example.homlee.R;
-import com.example.homlee.Utils.IConfig;
-import com.example.homlee.Utils.ResourcesReader;
+import com.example.homlee.utils.IConfig;
+import com.example.homlee.utils.ResourcesHelper;
 import com.example.homlee.opengl.ShaderHelper;
 
 import java.nio.ByteBuffer;
@@ -122,8 +122,8 @@ public class AirHockeyActivity extends BaseActivity {
         public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
             GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-            String vertexShaderSource = ResourcesReader.readText(mContext, R.raw.simple_vertex_shader);
-            String fragmentShaderSource = ResourcesReader.readText(mContext, R.raw.simple_fragment_shader);
+            String vertexShaderSource = ResourcesHelper.readText(mContext, R.raw.simple_vertex_shader);
+            String fragmentShaderSource = ResourcesHelper.readText(mContext, R.raw.simple_fragment_shader);
 
             int vertexShader = ShaderHelper.compileVertexShader(vertexShaderSource);
             int fragmentShader = ShaderHelper.compileFragmentShader(fragmentShaderSource);

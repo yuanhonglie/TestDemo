@@ -17,13 +17,13 @@ import com.trello.rxlifecycle2.RxLifecycle;
 import io.reactivex.subjects.BehaviorSubject;
 
 public class BaseActivity extends BaseMvpActivity<BasePresenter<IPresenter<IView>, IView>> {
-    protected String TAG = "BaseActivity";
+    protected String className = "BaseActivity";
     protected final BehaviorSubject<ActivityEvent> lifeSubject = BehaviorSubject.create();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TAG = getClass().getSimpleName();
+        className = getClass().getSimpleName();
         lifeSubject.onNext(ActivityEvent.CREATE);
     }
 

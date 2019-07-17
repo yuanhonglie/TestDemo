@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.homlee.R;
-import com.example.homlee.Utils.ListUtils;
+import com.example.homlee.utils.ListUtils;
 import com.example.homlee.fragments.BuildingFragment;
 import com.example.homlee.guanming.Candidate;
 import com.example.homlee.guanming.DataHelper;
@@ -192,7 +192,7 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
     private void testCandidates() {
         List<Candidate> candidates = DataHelper.getInstance().getCandidatesBySeqNum("BHR012256");
         for (Candidate candidate : candidates) {
-            Log.i(TAG, "testCandidates: " + candidate);
+            Log.i(className, "testCandidates: " + candidate);
         }
     }
 
@@ -270,6 +270,6 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
     protected void onDestroy() {
         super.onDestroy();
         mDisposables.dispose();
-        DataHelper.getInstance().destory();
+        DataHelper.destory();
     }
 }

@@ -2,7 +2,7 @@ package com.example.homlee;
 
 import android.app.Application;
 
-import com.example.homlee.Utils.Metrics;
+import com.example.homlee.utils.MetricsUtils;
 import com.homlee.mvp.leakcanary.PresenterRefWatcher;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -21,7 +21,7 @@ public class LeakCanaryApplication extends Application {
         }
         RefWatcher watcher = LeakCanary.install(this);
         PresenterRefWatcher.install(watcher);
-        Metrics.initialize(this);
+        MetricsUtils.initialize(this);
     }
 
 

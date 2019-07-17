@@ -11,8 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.homlee.R;
-import com.example.homlee.activities.BaseActivity;
-import com.homlee.mvp.base.BaseMvpActivity;
 
 /**
  * @author leo.yuan

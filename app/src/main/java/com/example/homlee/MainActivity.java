@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn_mvp_livedata).setOnClickListener(this);
         findViewById(R.id.btn_ui_adaptation).setOnClickListener(this);
         initData();
-        Log.i(TAG, "onCreate: isTest = " + BuildConfig.isTest);
+        Log.i(className, "onCreate: isTest = " + BuildConfig.isTest);
     }
 
     private void initData() {

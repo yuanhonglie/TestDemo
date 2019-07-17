@@ -1,4 +1,4 @@
-package com.example.homlee.Utils;
+package com.example.homlee.utils;
 
 import com.example.homlee.BuildConfig;
 

@@ -122,7 +122,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void rxJavaSample1() {
-        Log.i(TAG, "rxJavaSample1: start");
+        Log.i(className, "rxJavaSample1: start");
         Observable.just(1, 2, 3)
                 .map(new Function<Integer, String>() {
                     @Override
@@ -133,7 +133,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {
-                        Log.i(TAG, "onSubscribe: ");
+                        Log.i(className, "onSubscribe: ");
                         if (isFinished) {
                             dispose(disposable);
                         } else {
@@ -143,20 +143,20 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
                     @Override
                     public void onNext(String s) {
-                        Log.i(TAG, "onNext: " + s);
+                        Log.i(className, "onNext: " + s);
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.i(TAG, "onError: ");
+                        Log.i(className, "onError: ");
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.i(TAG, "onComplete: ");
+                        Log.i(className, "onComplete: ");
                     }
                 });
-        Log.i(TAG, "rxJavaSample1: end");
+        Log.i(className, "rxJavaSample1: end");
     }
 
     /*
@@ -170,7 +170,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
      */
 
     private void rxJavaSample2() {
-        Log.i(TAG, "rxJavaSample2: start");
+        Log.i(className, "rxJavaSample2: start");
         Observable<Integer> observableJust = Observable.just(1,2,3);
         Observable<String> observableMap = observableJust.map(new Function<Integer, String>() {
             @Override
@@ -181,7 +181,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
         Observer<String> observer = new Observer<String>() {
             @Override
             public void onSubscribe(Disposable disposable) {
-                Log.i(TAG, "onSubscribe: ");
+                Log.i(className, "onSubscribe: ");
                 if (isFinished) {
                     dispose(disposable);
                 } else {
@@ -191,21 +191,21 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             public void onNext(String s) {
-                Log.i(TAG, "onNext: " + s);
+                Log.i(className, "onNext: " + s);
             }
 
             @Override
             public void onError(Throwable throwable) {
-                Log.i(TAG, "onError: ");
+                Log.i(className, "onError: ");
             }
 
             @Override
             public void onComplete() {
-                Log.i(TAG, "onComplete: ");
+                Log.i(className, "onComplete: ");
             }
         };
         observableMap.subscribe(observer);
-        Log.i(TAG, "rxJavaSample2: end");
+        Log.i(className, "rxJavaSample2: end");
     }
 
     /*
@@ -219,7 +219,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
      */
 
     private void rxJavaSample3() {
-        Log.i(TAG, "rxJavaSample3: start");
+        Log.i(className, "rxJavaSample3: start");
         Observable.just(1, 2, 3)
                 .subscribeOn(Schedulers.io())
                 .map(new Function<Integer, String>() {
@@ -232,7 +232,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {
-                        Log.i(TAG, "onSubscribe:Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "onSubscribe:Thread = " + Thread.currentThread().getName());
                         if (isFinished) {
                             dispose(disposable);
                         } else {
@@ -242,20 +242,20 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
                     @Override
                     public void onNext(String s) {
-                        Log.i(TAG, "onNext: " + s);
+                        Log.i(className, "onNext: " + s);
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.i(TAG, "onError: ");
+                        Log.i(className, "onError: ");
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.i(TAG, "onComplete: ");
+                        Log.i(className, "onComplete: ");
                     }
                 });
-        Log.i(TAG, "rxJavaSample3: end");
+        Log.i(className, "rxJavaSample3: end");
     }
 
     /*
@@ -269,7 +269,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
      */
 
     private void rxJavaSample4() {
-        Log.i(TAG, "rxJavaSample4: start");
+        Log.i(className, "rxJavaSample4: start");
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -278,7 +278,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
         });
         thread.setName("rx-sample4");
         thread.start();
-        Log.i(TAG, "rxJavaSample4: end");
+        Log.i(className, "rxJavaSample4: end");
     }
 
     /*
@@ -296,26 +296,26 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
 
     private void rxJavaSample5() {
-        Log.i(TAG, "rxJavaSample5: start");
+        Log.i(className, "rxJavaSample5: start");
         Observable.just(1, 2, 3)
                 .filter(new Predicate<Integer>() {
                     @Override
                     public boolean test(Integer integer) throws Exception {
-                        Log.i(TAG, "filter:test: integer  = " + integer);
+                        Log.i(className, "filter:test: integer  = " + integer);
                         return (integer % 2) == 1;
                     }
                 })
                 .map(new Function<Integer, String>() {
                     @Override
                     public String apply(Integer integer) throws Exception {
-                        Log.i(TAG, "map:apply: integer  = " + integer);
+                        Log.i(className, "map:apply: integer  = " + integer);
                         return "string:" + integer;
                     }
                 })
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {
-                        Log.i(TAG, "onSubscribe: ");
+                        Log.i(className, "onSubscribe: ");
                         if (isFinished) {
                             dispose(disposable);
                         } else {
@@ -325,20 +325,20 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
                     @Override
                     public void onNext(String s) {
-                        Log.i(TAG, "onNext: " + s);
+                        Log.i(className, "onNext: " + s);
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.i(TAG, "onError: ");
+                        Log.i(className, "onError: ");
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.i(TAG, "onComplete: ");
+                        Log.i(className, "onComplete: ");
                     }
                 });
-        Log.i(TAG, "rxJavaSample5: end");
+        Log.i(className, "rxJavaSample5: end");
     }
 
     /*
@@ -357,13 +357,13 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
 
     private void rxJavaSample6() {
-        Log.i(TAG, "rxJavaSample6: start");
+        Log.i(className, "rxJavaSample6: start");
         Observable.just(1, 2, 3)
                 .filter(new Predicate<Integer>() {
                     @Override
                     public boolean test(Integer integer) throws Exception {
-                        Log.i(TAG, "filter:test: Thread = " + Thread.currentThread().getName());
-                        Log.i(TAG, "filter:test: integer  = " + integer);
+                        Log.i(className, "filter:test: Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "filter:test: integer  = " + integer);
                         return (integer % 2) == 1;
                     }
                 })
@@ -371,8 +371,8 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .map(new Function<Integer, String>() {
                     @Override
                     public String apply(Integer integer) throws Exception {
-                        Log.i(TAG, "map:apply: Thread = " + Thread.currentThread().getName());
-                        Log.i(TAG, "map:apply: integer  = " + integer);
+                        Log.i(className, "map:apply: Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "map:apply: integer  = " + integer);
                         return "string:" + integer;
                     }
                 })
@@ -381,8 +381,8 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {
-                        Log.i(TAG, "onSubscribe: Thread = " + Thread.currentThread().getName());
-                        Log.i(TAG, "onSubscribe: ");
+                        Log.i(className, "onSubscribe: Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "onSubscribe: ");
                         if (isFinished) {
                             dispose(disposable);
                         } else {
@@ -392,21 +392,21 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
                     @Override
                     public void onNext(String s) {
-                        Log.i(TAG, "onNext: Thread = " + Thread.currentThread().getName());
-                        Log.i(TAG, "onNext: " + s);
+                        Log.i(className, "onNext: Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "onNext: " + s);
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.i(TAG, "onError: ");
+                        Log.i(className, "onError: ");
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.i(TAG, "onComplete: ");
+                        Log.i(className, "onComplete: ");
                     }
                 });
-        Log.i(TAG, "rxJavaSample6: end");
+        Log.i(className, "rxJavaSample6: end");
     }
 
     /*
@@ -432,14 +432,14 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
      */
 
     private void rxJavaSample7() {
-        Log.i(TAG, "rxJavaSample7: start");
+        Log.i(className, "rxJavaSample7: start");
         Observable.interval(1, TimeUnit.SECONDS)
                 .compose(this.<Long>bindUntilEvent(ActivityEvent.DESTORY))
                 .filter(new Predicate<Long>() {
                     @Override
                     public boolean test(Long num) throws Exception {
-                        Log.i(TAG, "filter:test: Thread = " + Thread.currentThread().getName());
-                        Log.i(TAG, "filter:test: num  = " + num);
+                        Log.i(className, "filter:test: Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "filter:test: num  = " + num);
                         return (num % 2) == 1;
                     }
                 })
@@ -447,8 +447,8 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .map(new Function<Long, String>() {
                     @Override
                     public String apply(Long num) throws Exception {
-                        Log.i(TAG, "map:apply: Thread = " + Thread.currentThread().getName());
-                        Log.i(TAG, "map:apply: num  = " + num);
+                        Log.i(className, "map:apply: Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "map:apply: num  = " + num);
                         return "string:" + num;
                     }
                 })
@@ -456,27 +456,27 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable disposable) {
-                        Log.i(TAG, "onSubscribe: Thread = " + Thread.currentThread().getName());
-                        Log.i(TAG, "onSubscribe: ");
+                        Log.i(className, "onSubscribe: Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "onSubscribe: ");
                     }
 
                     @Override
                     public void onNext(String s) {
-                        Log.i(TAG, "onNext: Thread = " + Thread.currentThread().getName());
-                        Log.i(TAG, "onNext: " + s);
+                        Log.i(className, "onNext: Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "onNext: " + s);
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.i(TAG, "onError: ");
+                        Log.i(className, "onError: ");
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.i(TAG, "onComplete: ");
+                        Log.i(className, "onComplete: ");
                     }
                 });
-        Log.i(TAG, "rxJavaSample7: end");
+        Log.i(className, "rxJavaSample7: end");
     }
 
     /*
@@ -512,7 +512,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
      */
 
     private void rxJavaSample8() {
-        Log.i(TAG, "rxJavaSample8: start");
+        Log.i(className, "rxJavaSample8: start");
         Integer[] integers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         List<Integer> list = Arrays.asList(integers);
         Observable.just(list)
@@ -526,7 +526,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .filter(new Predicate<Integer>() {
                     @Override
                     public boolean test(Integer integer) throws Exception {
-                        Log.i(TAG, "filter.test: " + integer);
+                        Log.i(className, "filter.test: " + integer);
                         return integer > 5;
                     }
                 })
@@ -534,7 +534,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .map(new Function<Integer, String>() {
                     @Override
                     public String apply(Integer integer) {
-                        Log.i(TAG, "map.apply: " + integer);
+                        Log.i(className, "map.apply: " + integer);
                         int power = integer * integer;
                         return "power of " + integer + " is " + power;
                     }
@@ -542,10 +542,10 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        Log.i(TAG, "Consumer.accept: " + s);
+                        Log.i(className, "Consumer.accept: " + s);
                     }
                 });
-        Log.i(TAG, "rxJavaSample8: end");
+        Log.i(className, "rxJavaSample8: end");
     }
 
     /*
@@ -570,7 +570,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
 
     private void rxJavaSample9() {
-        Log.i(TAG, "rxJavaSample9: start");
+        Log.i(className, "rxJavaSample9: start");
         Observable.create(new ObservableOnSubscribe<Integer>() {
                         @Override
                         public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
@@ -591,14 +591,14 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .filter(new Predicate<Integer>() {
                     @Override
                     public boolean test(Integer integer) throws Exception {
-                        Log.i(TAG, "filter.test: " + integer);
+                        Log.i(className, "filter.test: " + integer);
                         return integer > 5;
                     }
                 })
                 .map(new Function<Integer, String>() {
                     @Override
                     public String apply(Integer integer) {
-                        Log.i(TAG, "map.apply: " + integer);
+                        Log.i(className, "map.apply: " + integer);
                         int power = integer * integer;
                         return "power of " + integer + " is " + power;
                     }
@@ -606,10 +606,10 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        Log.i(TAG, "onNext.accept: " + s);
+                        Log.i(className, "onNext.accept: " + s);
                     }
                 });
-        Log.i(TAG, "rxJavaSample9: end");
+        Log.i(className, "rxJavaSample9: end");
     }
 
     private Observable<String> getObserable1() {
@@ -647,7 +647,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String text) throws Exception {
-                        Log.i(TAG, "Consumer.accept: integer = " + text + ", Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "Consumer.accept: integer = " + text + ", Thread = " + Thread.currentThread().getName());
                     }
                 });
     }
@@ -668,7 +668,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String text) throws Exception {
-                        Log.i(TAG, "Consumer.accept: integer = " + text + ", Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "Consumer.accept: integer = " + text + ", Thread = " + Thread.currentThread().getName());
                     }
                 });
     }

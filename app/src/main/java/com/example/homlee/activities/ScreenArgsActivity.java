@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.homlee.R;
-import com.example.homlee.Utils.Metrics;
+import com.example.homlee.utils.MetricsUtils;
 
 /**
  * Created by homlee on 2018/6/23.
@@ -28,7 +28,7 @@ public class ScreenArgsActivity extends BaseActivity {
         int test_dimen3 = getResources().getDimensionPixelOffset(R.dimen.test_dimen);
 
 
-        DisplayMetrics mMetrics = Metrics.getDisplayMetrics();
+        DisplayMetrics mMetrics = MetricsUtils.getDisplayMetrics();
         Configuration config = getResources().getConfiguration();
 
         String text = "density: " + mMetrics.density
@@ -38,7 +38,7 @@ public class ScreenArgsActivity extends BaseActivity {
                 + "\nheightPixels: " + mMetrics.heightPixels
                 + "\nxdpi: " + mMetrics.xdpi
                 + "\nydpi: " + mMetrics.ydpi
-                + "\nmStatusBarHeight: " + Metrics.getStatusBarHeight()
+                + "\nmStatusBarHeight: " + MetricsUtils.getStatusBarHeight()
                 + "\nsmallestScreenWidthDp: " + config.smallestScreenWidthDp
                 + "\n\ntest_dimen: " + test_dimen
                 + "\ntest_dimen2: " + test_dimen2
@@ -47,7 +47,7 @@ public class ScreenArgsActivity extends BaseActivity {
                 + "\nBuild.MODEL="+ Build.MODEL
                 + "\nBuild.VERSION.SDK_INT="+Build.VERSION.SDK_INT;
 
-        Log.i(TAG, text);
+        Log.i(className, text);
         tvScreen = (TextView) findViewById(R.id.tv_screen_args);
         tvScreen.setText(text);
 

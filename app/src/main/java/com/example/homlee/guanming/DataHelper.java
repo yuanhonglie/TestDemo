@@ -137,7 +137,7 @@ public class DataHelper {
         BufferedReader bufferedReader = null;
         try {
             InputStream inputStream = manager.open("reserved-rooms.txt");
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
             bufferedReader = new BufferedReader(inputStreamReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -195,7 +195,7 @@ public class DataHelper {
         BufferedReader bufferedReader = null;
         try {
             InputStream inputStream = manager.open("candidates.txt");
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
             bufferedReader = new BufferedReader(inputStreamReader);
             String seqNum = "";
             String line;
@@ -268,7 +268,7 @@ public class DataHelper {
         return mBookedMap.get(roomId);
     }
 
-    public void destory() {
+    public static void destory() {
         mInstance = null;
     }
 

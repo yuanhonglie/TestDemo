@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.homlee.R;
-import com.example.homlee.Utils.ListUtils;
+import com.example.homlee.utils.ListUtils;
 
 import java.util.List;
 

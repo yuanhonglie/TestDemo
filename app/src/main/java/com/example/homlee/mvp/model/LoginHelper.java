@@ -1,7 +1,5 @@
 package com.example.homlee.mvp.model;
 
-import com.example.homlee.mvp.model.User;
-
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 

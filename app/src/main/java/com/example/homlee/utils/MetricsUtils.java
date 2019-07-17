@@ -1,4 +1,4 @@
-package com.example.homlee.Utils;
+package com.example.homlee.utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -12,14 +12,14 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
-public class Metrics {
-	private static final String TAG = Metrics.class.getSimpleName();
+public class MetricsUtils {
+	private static final String TAG = MetricsUtils.class.getSimpleName();
 	private static DisplayMetrics mMetrics = new DisplayMetrics();
 	private static int mStatusBarHeight;
 	private static boolean mIsTablet;
 	private static int mOrientation;
 	
-	private Metrics() {}
+	private MetricsUtils() {}
 	
 	public static void initialize(Context context) {
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -45,7 +45,7 @@ public class Metrics {
 	
 	private static void check() {
 		if (mMetrics.density < 0.01f) {
-			throw new RuntimeException("please call Metrics.initialize() first!!");
+			throw new RuntimeException("please call MetricsUtils.initialize() first!!");
 		}
 	}
 	
@@ -96,8 +96,8 @@ public class Metrics {
             field = c.getField("status_bar_height");
             x = Integer.parseInt(field.get(obj).toString());
             statusBarHeight = context.getResources().getDimensionPixelSize(x);
-        } catch (Exception e1) {
-            e1.printStackTrace();
+        } catch (Exception e) {
+			Log.e(TAG, "initStatusBarHeight: error = " + e.getMessage());
         }
         return statusBarHeight;
     }
@@ -116,7 +116,7 @@ public class Metrics {
 	            Boolean r = (Boolean) mIsLayoutSizeAtLeast.invoke(con, 0x00000004); // Configuration.SCREENLAYOUT_SIZE_XLARGE
 	            return r;
 	        } catch (Exception e) {
-	            e.printStackTrace();
+				Log.e(TAG, "initIsTablet: error = " + e.getMessage());
 	            return false;
 	        }
 	    }

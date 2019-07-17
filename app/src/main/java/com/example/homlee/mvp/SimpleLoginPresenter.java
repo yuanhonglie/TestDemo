@@ -4,10 +4,9 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import com.example.homlee.mvp.model.User;
 import com.example.homlee.mvp.model.LoginHelper;
+import com.example.homlee.mvp.model.User;
 import com.homlee.mvp.base.BasePresenter;
-import com.homlee.mvp.base.PresenterEvent;
 
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;

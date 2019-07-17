@@ -41,7 +41,7 @@ public class SelectedRoom {
         StringBuilder sb = new StringBuilder(16);
         sb.append(roomId);
         if (!TextUtils.isEmpty(candidateId)) {
-            sb.append("-").append(candidateId);
+            sb.append('-').append(candidateId);
         }
         return sb.toString();
     }

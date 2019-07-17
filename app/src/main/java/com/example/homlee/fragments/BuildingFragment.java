@@ -164,9 +164,9 @@ public class BuildingFragment extends Fragment {
                 for (int i = 0; i < candidates.size(); i++) {
                     Candidate candidate = candidates.get(i);
                     if (i > 0) {
-                        message.append("\n");
+                        message.append('\n');
                     }
-                    message.append(""+candidate);
+                    message.append(candidate);
                 }
 
                 builder.setMessage(message);

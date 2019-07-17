@@ -3,7 +3,7 @@ package com.example.homlee.opengl;
 import android.opengl.GLES20;
 import android.util.Log;
 
-import com.example.homlee.Utils.IConfig;
+import com.example.homlee.utils.IConfig;
 
 /**
  * Created by homlee on 2018/6/12.
