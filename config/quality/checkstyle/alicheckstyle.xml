@@ -21,6 +21,11 @@
 
 
 <module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="error"/>
+    <!--<property name="localeLanguage" value="en"/>-->
+    <property name="fileExtensions" value="java"/>
+
     <module name="FileLength">
         <property name="max" value="2000"/>
         <property name="fileExtensions" value="java"/>
@@ -59,7 +64,7 @@
 
         <!--6. 【强制】抽象类命名使用Abstract或Base开头；异常类命名使用Exception结尾；测试类命名以它要测试的类名开始，以Test结尾。-->
         <module name="AbstractClassName">
-            <property name="format" value="^(Abstract|Base).+$"/>
+            <property name="format" value="^Abstract.+$"/>
             <property name="ignoreModifier" value="true"/>
         </module>
 
@@ -121,9 +126,8 @@
         <!--类型强转括号不需要空格-->
         <module name="TypecastParenPad"/>
         <!--5. 【强制】采用4个空格缩进，禁止使用tab字符。-->
-        <module name="FileTabCharacter">
-            <property name="eachLine" value="true"/>
-        </module>
+        <!--FileTabCharacter-->
+
         <!--6. 【强制】注释的双斜杠与注释之间有且仅有一个空格-->
 
         <!--7. 【强制】单行字符数限不超过 120 个，超出需要换行，换行时遵循如下原则：-->
@@ -307,5 +311,8 @@
 
     </module>
 
-
+    <!--5. 【强制】采用4个空格缩进，禁止使用tab字符。-->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
 </module>

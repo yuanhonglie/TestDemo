@@ -26,6 +26,7 @@ import com.homlee.rxbus2.MessageManager;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private WindowManager mWindowManager;
     private View mFloatView;
+    private int mEMBerNAME;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +77,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn_mvp_livedata:
                 break;
-            case R.id.btn_ui_adaptation:
+            case R.id.btn_ui_adaptation://zhushi
                 startActivity(UIAdaptationActivity.class);
                 break;
             default:
