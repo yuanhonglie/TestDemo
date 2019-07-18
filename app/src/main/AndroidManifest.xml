@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.OpenGLActivity"/>
-        <activity android:name=".activities.SimpleOpenGLActivity"/>
+        <activity android:name=".activities.OpenGlActivity"/>
+        <activity android:name=".activities.SimpleOpenGlActivity"/>
         <activity android:name=".activities.AirHockeyActivity"/>
-        <activity android:name=".activities.UIActivity"/>
+        <activity android:name=".activities.UiActivity"/>
         <activity android:name=".activities.EditorEffectActivity"/>
         <activity android:name=".activities.ScreenArgsActivity"/>
         <activity android:name=".activities.RxJavaActivity"/>
@@ -32,8 +32,8 @@
         <activity android:name=".activities.GuanMingActivity"
             android:screenOrientation="portrait"
             android:configChanges=""/>
-        <activity android:name=".mvp.SimpleLoginMVPActivity"/>
-        <activity android:name=".activities.UIAdaptationActivity"/>
+        <activity android:name=".mvp.SimpleLoginMvpActivity"/>
+        <activity android:name=".activities.UiAdaptationActivity"/>
     </application>
 
 </manifest>

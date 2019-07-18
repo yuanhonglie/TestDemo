@@ -7,7 +7,7 @@ import android.view.View;
 import com.example.homlee.R;
 
 
-public class UIActivity extends BaseActivity implements View.OnClickListener {
+public class UiActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

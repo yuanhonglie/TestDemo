@@ -7,7 +7,7 @@ import android.text.TextUtils;
  */
 
 public class Candidate {
-
+    private static final int ID_LEN = 6;
     private String id;
     private String name;
     private String extra;
@@ -19,8 +19,8 @@ public class Candidate {
         this.name = name;
         this.extra = extra;
         this.identity = identity;
-        if (!TextUtils.isEmpty(identity) && identity.length() > 6) {
-            this.birthday = identity.substring(6);
+        if (!TextUtils.isEmpty(identity) && identity.length() > ID_LEN) {
+            this.birthday = identity.substring(ID_LEN);
         }
     }
 

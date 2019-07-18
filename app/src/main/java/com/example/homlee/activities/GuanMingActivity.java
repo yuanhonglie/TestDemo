@@ -49,7 +49,11 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
     private TextView view1, view2, view3;//页卡视图
     private List<View> mViewList = new ArrayList<>();//页卡视图集合
     private List<BuildingFragment> mFragmentList;
-    private int[] mTitleIds = {R.string.label_building_name1, R.string.label_building_name2, R.string.label_building_name3};
+    private int[] mTitleIds = {
+        R.string.label_building_name1,
+        R.string.label_building_name2,
+        R.string.label_building_name3
+    };
     private CompositeDisposable mDisposables = new CompositeDisposable();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -173,7 +177,8 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
                 DataHelper.getInstance().deleteAllCandidates();
-                boolean success = DataHelper.getInstance().loadCandidatesFromAsset(GuanMingActivity.this);
+                boolean success = DataHelper.getInstance()
+                        .loadCandidatesFromAsset(GuanMingActivity.this);
                 emitter.onNext(success);
                 emitter.onComplete();
             }
@@ -183,7 +188,10 @@ public class GuanMingActivity extends BaseActivity implements View.OnClickListen
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean result) throws Exception {
-                        Toast.makeText(GuanMingActivity.this, result ? R.string.load_candidates_completed : R.string.load_candidates_failed, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GuanMingActivity.this, result
+                                ? R.string.load_candidates_completed
+                                : R.string.load_candidates_failed,
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
         mDisposables.add(disposable);

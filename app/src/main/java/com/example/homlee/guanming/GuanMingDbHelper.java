@@ -5,14 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by homlee on 2018/11/24.
- */
 
 public class GuanMingDbHelper extends SQLiteOpenHelper {
 
@@ -27,33 +25,33 @@ public class GuanMingDbHelper extends SQLiteOpenHelper {
     }
 
     public interface BookingField {
-        String candidateId = "candidateId";
-        String roomId 	= "roomId";
+        String CANDIDATEID = "candidateId";
+        String ROOMID = "roomId";
     }
 
     public interface CandidateField {
-        String id = "_id";
-        String seq = "seq";
-        String name = "name";
-        String extra = "extra";
-        String identity = "identity";
+        String ID = "_id";
+        String SEQ = "seq";
+        String NAME = "name";
+        String EXTRA = "extra";
+        String IDENTITY = "identity";
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_BOOKING
                 +"("
-                +BookingField.roomId 	+ " TEXT PRIMARY KEY, "
-                +BookingField.candidateId + " TEXT"
+                +BookingField.ROOMID + " TEXT PRIMARY KEY, "
+                +BookingField.CANDIDATEID + " TEXT"
                 +");";
         db.execSQL(sql);
         sql = "CREATE TABLE IF NOT EXISTS " + TABLE_CANDIDATE
                 +"("
-                +CandidateField.id + " TEXT PRIMARY KEY, "
-                +CandidateField.seq + " TEXT, "
-                +CandidateField.name + " TEXT, "
-                +CandidateField.extra + " TEXT, "
-                +CandidateField.identity + " TEXT"
+                +CandidateField.ID + " TEXT PRIMARY KEY, "
+                +CandidateField.SEQ + " TEXT, "
+                +CandidateField.NAME + " TEXT, "
+                +CandidateField.EXTRA + " TEXT, "
+                +CandidateField.IDENTITY + " TEXT"
                 +");";
         db.execSQL(sql);
     }
@@ -70,7 +68,7 @@ public class GuanMingDbHelper extends SQLiteOpenHelper {
     private boolean doesRoomIdExist(SQLiteDatabase db, String roomId) {
         boolean exist = false;
         try {
-            String selection = BookingField.roomId + "=?";
+            String selection = BookingField.ROOMID + "=?";
             String[] args = new String[]{""+roomId};
             Cursor c = db.query(TABLE_BOOKING, null, selection, args, null, null, null);
             if (c != null) {
@@ -87,7 +85,7 @@ public class GuanMingDbHelper extends SQLiteOpenHelper {
         boolean succ = false;
         try {
             SQLiteDatabase db = getWritableDatabase();
-            String whereClause = BookingField.roomId + "=?";
+            String whereClause = BookingField.ROOMID + "=?";
             String[] args = new String[]{""+roomId};
             long row = db.delete(TABLE_BOOKING, whereClause, args);
             succ = row > 0;
@@ -104,8 +102,8 @@ public class GuanMingDbHelper extends SQLiteOpenHelper {
                 succ = true;
             } else {
                 ContentValues cvs = new ContentValues();
-                cvs.put(BookingField.roomId, room.getRoomId());
-                cvs.put(BookingField.candidateId, room.getCandidateId());
+                cvs.put(BookingField.ROOMID, room.getRoomId());
+                cvs.put(BookingField.CANDIDATEID, room.getCandidateId());
                 long row = db.insert(TABLE_BOOKING, null, cvs);
                 succ = row > 0;
             }
@@ -122,15 +120,15 @@ public class GuanMingDbHelper extends SQLiteOpenHelper {
             if (c != null) {
                 if (c.moveToFirst()) {
                     do {
-                        String roomId = c.getString(c.getColumnIndex(BookingField.roomId));
-                        String candidate = c.getString(c.getColumnIndex(BookingField.candidateId));
+                        String roomId = c.getString(c.getColumnIndex(BookingField.ROOMID));
+                        String candidate = c.getString(c.getColumnIndex(BookingField.CANDIDATEID));
                         roomList.add(new SelectedRoom(roomId, candidate));
                     } while (c.moveToNext());
                 }
                 c.close();
             }
         } catch (Exception e) {
-//			e.printStackTrace();
+            Log.i(TAG, "loadAllSeletedRooms: error = " + e.getMessage());
         } finally {
             if (db != null) {
                 db.close();
@@ -170,10 +168,10 @@ public class GuanMingDbHelper extends SQLiteOpenHelper {
             try {
                 for (Candidate candidate : candidates) {
                     ContentValues cvs = new ContentValues();
-                    cvs.put(CandidateField.seq, candidate.getId());
-                    cvs.put(CandidateField.name, candidate.getName());
-                    cvs.put(CandidateField.extra, candidate.getExtra());
-                    cvs.put(CandidateField.identity, candidate.getIdentity());
+                    cvs.put(CandidateField.SEQ, candidate.getId());
+                    cvs.put(CandidateField.NAME, candidate.getName());
+                    cvs.put(CandidateField.EXTRA, candidate.getExtra());
+                    cvs.put(CandidateField.IDENTITY, candidate.getIdentity());
                     db.insert(TABLE_CANDIDATE, null, cvs);
                 }
                 db.setTransactionSuccessful();
@@ -188,16 +186,16 @@ public class GuanMingDbHelper extends SQLiteOpenHelper {
         List<Candidate> candidates = new ArrayList<>(16);
         try {
             SQLiteDatabase db = getReadableDatabase();
-            String selection = CandidateField.seq + "=?";
+            String selection = CandidateField.SEQ + "=?";
             String[] args = new String[]{""+id};
             Cursor c = db.query(TABLE_CANDIDATE, null, selection, args, null, null, null);
             if (c != null) {
                 if (c.getCount() > 0 && c.moveToFirst()) {
                     do {
-                        String cid = c.getString(c.getColumnIndex(CandidateField.seq));
-                        String name = c.getString(c.getColumnIndex(CandidateField.name));
-                        String extra = c.getString(c.getColumnIndex(CandidateField.extra));
-                        String identity = c.getString(c.getColumnIndex(CandidateField.identity));
+                        String cid = c.getString(c.getColumnIndex(CandidateField.SEQ));
+                        String name = c.getString(c.getColumnIndex(CandidateField.NAME));
+                        String extra = c.getString(c.getColumnIndex(CandidateField.EXTRA));
+                        String identity = c.getString(c.getColumnIndex(CandidateField.IDENTITY));
                         candidates.add(new Candidate(cid, name, extra, identity));
                     } while (c.moveToNext());
                 }

@@ -14,19 +14,18 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.homlee.activities.BaseActivity;
-import com.example.homlee.activities.UIAdaptationActivity;
+import com.example.homlee.activities.UiAdaptationActivity;
 import com.example.homlee.activities.GuanMingActivity;
-import com.example.homlee.activities.OpenGLActivity;
+import com.example.homlee.activities.OpenGlActivity;
 import com.example.homlee.activities.RxJavaActivity;
-import com.example.homlee.activities.UIActivity;
+import com.example.homlee.activities.UiActivity;
 import com.example.homlee.activities.WebViewActivity;
-import com.example.homlee.mvp.SimpleLoginMVPActivity;
+import com.example.homlee.mvp.SimpleLoginMvpActivity;
 import com.homlee.rxbus2.MessageManager;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private WindowManager mWindowManager;
     private View mFloatView;
-    private int mEMBerNAME;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +52,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_open_gl:
-                startActivity(OpenGLActivity.class);
+                startActivity(OpenGlActivity.class);
                 break;
             case R.id.btn_ui_effect:
-                startActivity(UIActivity.class);
+                startActivity(UiActivity.class);
                 break;
             case R.id.btn_rx_java:
                 startActivity(RxJavaActivity.class);
@@ -71,14 +70,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 requestFloatViewPermission();
                 break;
             case R.id.btn_mvp:
-                startActivity(SimpleLoginMVPActivity.class);
+                startActivity(SimpleLoginMvpActivity.class);
                 break;
             case R.id.btn_mvp_viewmodel:
                 break;
             case R.id.btn_mvp_livedata:
                 break;
             case R.id.btn_ui_adaptation://zhushi
-                startActivity(UIAdaptationActivity.class);
+                startActivity(UiAdaptationActivity.class);
                 break;
             default:
                 break;
@@ -121,7 +120,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         // WindowManager.LayoutParams.TYPE_SYSTEM_ALERT
         // 设置flag
         int flags = WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
-         | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         // 如果设置了WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE，弹出的View收不到Back键的事件
         params.flags = flags;
         // 不设置这个弹出框的透明遮罩显示为黑色

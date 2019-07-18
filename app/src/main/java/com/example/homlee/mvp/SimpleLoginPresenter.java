@@ -19,7 +19,9 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * @author leo.yuan
  */
-public class SimpleLoginPresenter extends BasePresenter<SimpleLoginContract.Presenter, SimpleLoginContract.View> implements SimpleLoginContract.Presenter {
+public class SimpleLoginPresenter
+        extends BasePresenter<SimpleLoginContract.Presenter, SimpleLoginContract.View>
+        implements SimpleLoginContract.Presenter {
 
     public SimpleLoginPresenter(@NonNull Application application) {
         super(application);

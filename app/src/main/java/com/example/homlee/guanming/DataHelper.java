@@ -19,8 +19,8 @@ import java.util.regex.Pattern;
 
 /**
  * Created by homlee on 2018/11/24.
+ * @author HLYU
  */
-
 public class DataHelper {
     private static final String TAG = "DataHelper";
     private volatile static DataHelper mInstance;
@@ -67,6 +67,7 @@ public class DataHelper {
 
     /**
      * 判断房间是否已被预订
+     *
      * @param roomId
      * @return
      */
@@ -76,6 +77,7 @@ public class DataHelper {
 
     /**
      * 预订房间
+     *
      * @param roomId
      * @return
      */
@@ -85,6 +87,7 @@ public class DataHelper {
 
     /**
      * 预订房间
+     *
      * @param room
      * @return
      */
@@ -99,9 +102,9 @@ public class DataHelper {
     }
 
 
-
     /**
      * 取消预订
+     *
      * @param roomId
      * @return
      */
@@ -174,7 +177,7 @@ public class DataHelper {
                     int buildingType = mBuildingMap.get(buildingName);
                     String level = matcher.group(3);
                     String roomNum = matcher.group(4);
-                    //roomId = buildingType + "-" + level + roomNum;
+                    //ROOMID = buildingType + "-" + level + roomNum;
                     String roomId = String.format("%02d-%s%s", buildingType, level, roomNum);
                     return new SelectedRoom(roomId, candidateId);
                 }
@@ -252,6 +255,7 @@ public class DataHelper {
     }
 
     private Map<String, Integer> mBuildingMap = new HashMap<>(16);
+
     private void initBuildingMap() {
         mBuildingMap.clear();
         //TODO 根据数据修改映射表

@@ -15,28 +15,28 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Created by homlee on 2018/6/8.
  */
-public class SimpleOpenGLActivity extends BaseActivity {
+public class SimpleOpenGlActivity extends BaseActivity {
 
-    private GLSurfaceView mGLSurfaceView;
-    private boolean rendererSet = false;
+    private GLSurfaceView mGlSurfaceView;
+    private boolean rendererSet;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mGLSurfaceView = new GLSurfaceView(this);
+        mGlSurfaceView = new GLSurfaceView(this);
 
 
         if (supportsEs2()) {
-            mGLSurfaceView.setEGLContextClientVersion(2);
-            mGLSurfaceView.setRenderer(new OpenGLRenderer());
+            mGlSurfaceView.setEGLContextClientVersion(2);
+            mGlSurfaceView.setRenderer(new OpenGlRenderer());
             rendererSet = true;
         } else {
             Toast.makeText(this, "This device does not support OpenGL ES 2.0", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        setContentView(mGLSurfaceView);
+        setContentView(mGlSurfaceView);
 
     }
 
@@ -51,7 +51,7 @@ public class SimpleOpenGLActivity extends BaseActivity {
         super.onResume();
 
         if (rendererSet) {
-            mGLSurfaceView.onResume();
+            mGlSurfaceView.onResume();
         }
     }
 
@@ -60,11 +60,11 @@ public class SimpleOpenGLActivity extends BaseActivity {
         super.onPause();
 
         if (rendererSet) {
-            mGLSurfaceView.onPause();
+            mGlSurfaceView.onPause();
         }
     }
 
-    class OpenGLRenderer implements GLSurfaceView.Renderer {
+    class OpenGlRenderer implements GLSurfaceView.Renderer {
 
         @Override
         public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {

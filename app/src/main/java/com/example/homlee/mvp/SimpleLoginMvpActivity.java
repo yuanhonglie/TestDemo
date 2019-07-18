@@ -15,7 +15,9 @@ import com.example.homlee.R;
 /**
  * @author leo.yuan
  */
-public class SimpleLoginMVPActivity extends MediatorActivity<SimpleLoginPresenter> implements View.OnClickListener, SimpleLoginContract.View {
+public class SimpleLoginMvpActivity
+        extends BaseMediatorActivity<SimpleLoginPresenter>
+        implements View.OnClickListener, SimpleLoginContract.View {
     private TextView mTextView;
     private EditText mUsername;
     private EditText mPassword;

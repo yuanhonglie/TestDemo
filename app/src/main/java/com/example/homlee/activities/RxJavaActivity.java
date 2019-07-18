@@ -34,11 +34,11 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaActivity extends BaseActivity implements View.OnClickListener {
 
-    private volatile boolean isFinished = false;
-    private volatile Disposable mDisposable1 = null;
-    private volatile Disposable mDisposable2 = null;
-    private volatile Disposable mDisposable3 = null;
-    private volatile Disposable mDisposable5 = null;
+    private volatile boolean isFinished;
+    private volatile Disposable mDisposable1;
+    private volatile Disposable mDisposable2;
+    private volatile Disposable mDisposable3;
+    private volatile Disposable mDisposable5;
 
     private Executor mExecutor1;
     private Executor mExecutor2;
@@ -513,7 +513,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
 
     private void rxJavaSample8() {
         Log.i(className, "rxJavaSample8: start");
-        Integer[] integers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        final Integer[] integers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         List<Integer> list = Arrays.asList(integers);
         Observable.just(list)
                 .compose(this.<List<Integer>>bindUntilEvent(ActivityEvent.DESTORY))
@@ -527,7 +527,7 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                     @Override
                     public boolean test(Integer integer) throws Exception {
                         Log.i(className, "filter.test: " + integer);
-                        return integer > 5;
+                        return integer > 3;
                     }
                 })
                 .take(3)
@@ -647,7 +647,8 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String text) throws Exception {
-                        Log.i(className, "Consumer.accept: integer = " + text + ", Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "Consumer.accept: integer = " + text
+                                + ", Thread = " + Thread.currentThread().getName());
                     }
                 });
     }
@@ -664,11 +665,14 @@ public class RxJavaActivity extends BaseActivity implements View.OnClickListener
      */
 
     private void rxJavaSample11() {
+        //test2
         Observable.merge(getObserable1(), getObservable2())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String text) throws Exception {
-                        Log.i(className, "Consumer.accept: integer = " + text + ", Thread = " + Thread.currentThread().getName());
+                        Log.i(className, "Consumer.accept: integer = "
+                                + text + ", Thread = "
+                                + Thread.currentThread().getName());
                     }
                 });
     }

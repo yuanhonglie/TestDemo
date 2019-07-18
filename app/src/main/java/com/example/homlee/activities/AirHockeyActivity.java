@@ -27,24 +27,24 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class AirHockeyActivity extends BaseActivity {
 
-    private GLSurfaceView mGLSurfaceView;
-    private boolean rendererSet = false;
+    private GLSurfaceView mGlSurfaceView;
+    private boolean rendererSet;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mGLSurfaceView = new GLSurfaceView(this);
+        mGlSurfaceView = new GLSurfaceView(this);
         if (supportsEs2()) {
-            mGLSurfaceView.setEGLContextClientVersion(2);
-            mGLSurfaceView.setRenderer(new AirHockeyRenderer(this));
+            mGlSurfaceView.setEGLContextClientVersion(2);
+            mGlSurfaceView.setRenderer(new AirHockeyRenderer(this));
             rendererSet = true;
         } else {
             Toast.makeText(this, "This device does not support OpenGL ES 2.0", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        setContentView(mGLSurfaceView);
+        setContentView(mGlSurfaceView);
 
     }
 
@@ -59,7 +59,7 @@ public class AirHockeyActivity extends BaseActivity {
         super.onResume();
 
         if (rendererSet) {
-            mGLSurfaceView.onResume();
+            mGlSurfaceView.onResume();
         }
     }
 
@@ -68,7 +68,7 @@ public class AirHockeyActivity extends BaseActivity {
         super.onPause();
 
         if (rendererSet) {
-            mGLSurfaceView.onPause();
+            mGlSurfaceView.onPause();
         }
     }
 
@@ -93,22 +93,22 @@ public class AirHockeyActivity extends BaseActivity {
             mContext = context;
 
             float[] tableVerticesWithTriangles = {
-                    //Order of coordinates: x, y, r, g, b
-                    //Triangles Fan
-                    0f, 0f, 1f, 1f, 1f,
-                    -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
-                    0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
-                    0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
-                    -0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
-                    -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
+                //Order of coordinates: x, y, r, g, b
+                //Triangles Fan
+                0f, 0f, 1f, 1f, 1f,
+                -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
+                0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
+                0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
+                -0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
+                -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
 
-                    //Line 1
-                    -0.5f, 0f, 1f, 0f, 0f,
-                    0.5f, 0f, 1f, 0f, 0f,
+                //Line 1
+                -0.5f, 0f, 1f, 0f, 0f,
+                0.5f, 0f, 1f, 0f, 0f,
 
-                    //Mallets
-                    0f, -0.25f, 0f, 0f, 1f,
-                    0f, 0.25f, 1f, 0f, 0f
+                //Mallets
+                0f, -0.25f, 0f, 0f, 1f,
+                0f, 0.25f, 1f, 0f, 0f
             };
 
             vertexData = ByteBuffer
@@ -129,7 +129,7 @@ public class AirHockeyActivity extends BaseActivity {
             int fragmentShader = ShaderHelper.compileFragmentShader(fragmentShaderSource);
 
             int program = ShaderHelper.linkProgram(vertexShader, fragmentShader);
-            if (IConfig.debug) {
+            if (IConfig.DEBUG) {
                 ShaderHelper.validateProgram(program);
             }
 
@@ -139,11 +139,13 @@ public class AirHockeyActivity extends BaseActivity {
             aColorLocation = GLES20.glGetAttribLocation(program, A_COLOR);
 
             vertexData.position(0);
-            GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, STRIDE, vertexData);
+            GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT,
+                    false, STRIDE, vertexData);
             GLES20.glEnableVertexAttribArray(aPositionLocation);
 
             vertexData.position(POSITION_COMPONENT_COUNT);
-            GLES20.glVertexAttribPointer(aColorLocation, COLOR_COMPONENT_COUNT, GLES20.GL_FLOAT, false, STRIDE, vertexData);
+            GLES20.glVertexAttribPointer(aColorLocation, COLOR_COMPONENT_COUNT, GLES20.GL_FLOAT,
+                    false, STRIDE, vertexData);
             GLES20.glEnableVertexAttribArray(aColorLocation);
 
         }

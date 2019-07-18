@@ -34,7 +34,7 @@ public class ShaderHelper {
         final int[] compileStatus = new int[1];
         GLES20.glGetShaderiv(shaderId, GLES20.GL_COMPILE_STATUS, compileStatus, 0);
 
-        if (IConfig.debug) {
+        if (IConfig.DEBUG) {
             Log.i(TAG, "compileShader: compile result = " + GLES20.glGetShaderInfoLog(shaderId));
         }
 
@@ -63,7 +63,7 @@ public class ShaderHelper {
         final int[] linkStatus = new int[1];
         GLES20.glGetProgramiv(programId, GLES20.GL_LINK_STATUS, linkStatus, 0);
 
-        if (IConfig.debug) {
+        if (IConfig.DEBUG) {
             Log.i(TAG, "linkProgram: Result of linking program : " + GLES20.glGetProgramInfoLog(programId));
         }
 

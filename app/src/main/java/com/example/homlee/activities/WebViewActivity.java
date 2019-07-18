@@ -24,6 +24,7 @@ import com.example.homlee.R;
 
 public class WebViewActivity extends BaseActivity {
     private static final String TAG = "WebViewActivity";
+    private static final String GOOGLE_URL = "http://www.google.com/";
     private Button mBtnGo;
     private EditText mEtAddr;
     private WebView mWebView;
@@ -62,20 +63,30 @@ public class WebViewActivity extends BaseActivity {
         //webSettings.setPluginsEnabled(true);
 
         //设置自适应屏幕，两者合用
-        webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
-        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+        //将图片调整到适合webview的大小
+        webSettings.setUseWideViewPort(true);
+        // 缩放至屏幕的大小
+        webSettings.setLoadWithOverviewMode(true);
 
         //缩放操作
-        webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
-        webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放
-        webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
+        //支持缩放，默认为true。是下面那个的前提。
+        webSettings.setSupportZoom(true);
+        //设置内置的缩放控件。若为false，则该WebView不可缩放
+        webSettings.setBuiltInZoomControls(true);
+        //隐藏原生的缩放控件
+        webSettings.setDisplayZoomControls(false);
 
         //其他细节操作
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //关闭webview中缓存
-        webSettings.setAllowFileAccess(true); //设置可以访问文件
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
-        webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
-        webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
+        //关闭webview中缓存
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        //设置可以访问文件
+        webSettings.setAllowFileAccess(true);
+        //支持通过JS打开新窗口
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        //支持自动加载图片
+        webSettings.setLoadsImagesAutomatically(true);
+        //设置编码格式
+        webSettings.setDefaultTextEncodingName("utf-8");
         //webView.setWebViewClient(webViewClient);
         webView.setWebChromeClient(webChromeClient);
     }
@@ -84,20 +95,23 @@ public class WebViewActivity extends BaseActivity {
     //WebViewClient主要帮助WebView处理各种通知、请求事件
     private WebViewClient webViewClient = new WebViewClient() {
         @Override
-        public void onPageFinished(WebView view, String url) {//页面加载完成
+        public void onPageFinished(WebView view, String url) {
+            //页面加载完成
             //progressBar.setVisibility(View.GONE);
         }
 
         @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {//页面开始加载
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            //页面开始加载
             //progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             Log.i(TAG,"拦截url:"+url);
-            if(url.equals("http://www.google.com/")){
-                return true;//表示我已经处理过了
+            if(GOOGLE_URL.equals(url)){
+                //表示我已经处理过了
+                return true;
             }
             return super.shouldOverrideUrlLoading(view, url);
         }
@@ -139,8 +153,10 @@ public class WebViewActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Log.i(TAG,"是否有上一个页面:"+mWebView.canGoBack());
-        if (mWebView.canGoBack() && keyCode == KeyEvent.KEYCODE_BACK){//点击返回按钮的时候判断有没有上一页
-            mWebView.goBack(); // goBack()表示返回webView的上一页面
+        //点击返回按钮的时候判断有没有上一页
+        if (mWebView.canGoBack() && keyCode == KeyEvent.KEYCODE_BACK){
+            // goBack()表示返回webView的上一页面
+            mWebView.goBack();
             return true;
         }
         return super.onKeyDown(keyCode,event);

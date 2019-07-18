@@ -10,7 +10,7 @@ import com.example.homlee.R;
  * Created by homlee on 2018/6/23.
  */
 
-public class OpenGLActivity extends BaseActivity implements View.OnClickListener{
+public class OpenGlActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class OpenGLActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_simple_opengl:
-                startActivity(SimpleOpenGLActivity.class);
+                startActivity(SimpleOpenGlActivity.class);
                 break;
             case R.id.btn_air_hockey:
                 startActivity(AirHockeyActivity.class);

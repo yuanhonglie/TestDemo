@@ -61,13 +61,13 @@ public class BuildingFragment extends Fragment {
     private void initView(View root) {
         mRecyclerView = root.findViewById(R.id.rv_rooms);
         abOutTextViews.add(findTextView(root, R.id.tv_out_east_ab1));
-        //abOutTextViews.add(findTextView(root, R.candidateId.tv_out_east_ab2));
+        //abOutTextViews.add(findTextView(root, R.CANDIDATEID.tv_out_east_ab2));
         abOutTextViews.add(findTextView(root, R.id.tv_out_west_ab1));
-        //abOutTextViews.add(findTextView(root, R.candidateId.tv_out_west_ab2));
+        //abOutTextViews.add(findTextView(root, R.CANDIDATEID.tv_out_west_ab2));
         dOutTextViews.add(findTextView(root, R.id.tv_out_east_d1));
-        //dOutTextViews.add(findTextView(root, R.candidateId.tv_out_east_d2));
+        //dOutTextViews.add(findTextView(root, R.CANDIDATEID.tv_out_east_d2));
         dOutTextViews.add(findTextView(root, R.id.tv_out_west_d1));
-        //dOutTextViews.add(findTextView(root, R.candidateId.tv_out_west_d2));
+        //dOutTextViews.add(findTextView(root, R.CANDIDATEID.tv_out_west_d2));
     }
 
     private void updateOutTextView(int buildingType) {

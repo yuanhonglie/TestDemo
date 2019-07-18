@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 
 import com.example.homlee.R;
 
-public class UIAdaptationActivity extends BaseActivity {
+public class UiAdaptationActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

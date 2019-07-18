@@ -7,5 +7,5 @@ import com.example.homlee.BuildConfig;
  */
 
 public interface IConfig {
-    boolean debug = BuildConfig.DEBUG;
+    boolean DEBUG = BuildConfig.DEBUG;
 }

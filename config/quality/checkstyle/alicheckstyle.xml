@@ -27,12 +27,12 @@
     <property name="fileExtensions" value="java"/>
 
     <module name="FileLength">
-        <property name="max" value="2000"/>
+        <property name="max" value="2500"/>
         <property name="fileExtensions" value="java"/>
     </module>
 
     <module name="SuppressionFilter">
-        <property name="file" value="${checkstyleSuppressionsPath}"/>
+        <property name="file" value='${checkstyleSuppressionsPath}'/>
     </module>
 
     <module name="TreeWalker">
@@ -64,7 +64,7 @@
 
         <!--6. 【强制】抽象类命名使用Abstract或Base开头；异常类命名使用Exception结尾；测试类命名以它要测试的类名开始，以Test结尾。-->
         <module name="AbstractClassName">
-            <property name="format" value="^Abstract.+$"/>
+            <property name="format" value="^Abstract|Base.+$"/>
             <property name="ignoreModifier" value="true"/>
         </module>
 
@@ -96,7 +96,11 @@
 
         <!--（二）常量定义-->
         <!--1. 【强制】不允许任何魔法值（即未经预先定义的常量）直接出现在代码中。-->
-        <module name="MagicNumber"/>
+        <module name="MagicNumber">
+            <property name="ignoreNumbers" value="-1, 0, 1, 2"/>
+            <property name="constantWaiverParentToken" value="ASSIGN, ARRAY_INIT, EXPR,
+                UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, DIV, PLUS "/>
+        </module>
         <!--2. 【强制】long或者Long初始赋值时，使用大写的L，不能是小写的l，小写容易跟数字1混淆，造成误解。-->
         <module name="UpperEll"/>
         <!--3. 【推荐】不要使用一个常量类维护所有常量，按常量功能进行归类，分开维护。-->
@@ -136,7 +140,7 @@
             <property name="max" value="120"/>
         </module>
         <!--1） 第二行相对一缩进 4个空格，从第三行开始，不再继续缩进，参考示例-->
-        <module name="Indentation"/>
+        <!--<module name="Indentation"/>-->
         <!--2） 运算符与下文一起换行。-->
         <module name="OperatorWrap">
             <property name="option" value="nl"/>
@@ -264,7 +268,18 @@
         <module name="CommentsIndentation"/>
         <!--2. 【强制】所有的抽象方法（包括接口中的方法）必须要用Javadoc注释、除了返回值、参数、异常说明外，还必须指出该方法做什么事情，实现什么功能。-->
         <!--3. 【强制】所有的类都必须添加创建者和创建日期。-->
+        <module name="WriteTag">
+            <property name="tag" value="@author"/>
+            <property name="tagFormat" value="\S"/>
+            <property name="tagSeverity" value="ignore"/>
+        </module>
+        <module name="WriteTag">
+            <property name="tag" value="@date"/>
+            <property name="tagFormat" value="\S"/>
+            <property name="tagSeverity" value="ignore"/>
+        </module>
         <!--4. 【强制】方法内部单行注释，在被注释语句上方另起一行，使用//注释。方法内部多行注释使用/* */注释，注意与代码对齐。-->
+        <module name="TrailingComment"/>
         <!--5. 【强制】所有的枚举类型字段必须要有注释，说明每个数据项的用途。-->
         <!--6. 【推荐】与其“半吊子”英文来注释，不如用中文注释把问题说清楚。专有名词与关键字保持英文原文即可。-->
         <!--7. 【推荐】代码修改的同时，注释也要进行相应的修改，尤其是参数、返回值、异常、核心逻辑等的修改。-->
@@ -274,7 +289,15 @@
         <!--11. 【参考】特殊注释标记，请注明标记人与标记时间。注意及时处理这些标记，通过标记扫描，经常清理此类标记。线上故障有时候就是来源于这些标记处的代码。-->
         <!--1） 待办事宜（TODO）:（ 标记人，标记时间，[预计处理时间]）-->
         <!--2） 错误，不能工作（FIXME）:（标记人，标记时间，[预计处理时间]）-->
-
+        <!--(九) 其它-->
+        <!--1. 【强制】在使用正则表达式时，利用好其预编译功能，可以有效加快正则匹配速度。-->
+        <!--2. 【强制】velocity调用POJO类的属性时，建议直接使用属性名取值即可，模板引擎会自动按规范调用POJO的getXxx()，如果是boolean基本数据类型变量（boolean命名不需要加is前缀），会自动调用isXxx()方法。-->
+        <!--3. 【强制】后台输送给页面的变量必须加$!{var}——中间的感叹号。-->
+        <!--4. 【强制】注意 Math.random() 这个方法返回是double类型，注意取值的范围 0≤x<1（能够取到零值，注意除零异常），如果想获取整数类型的随机数，不要将x放大10的若干倍然后取整，直接使用Random对象的nextInt或者nextLong方法。-->
+        <!--5. 【强制】获取当前毫秒数System.currentTimeMillis(); 而不是new Date().getTime();-->
+        <!--6. 【推荐】不要在视图模板中加入任何复杂的逻辑。-->
+        <!--7. 【推荐】任何数据结构的构造或初始化，都应指定大小，避免数据结构无限增长吃光内存。-->
+        <!--8. 【推荐】及时清理不再使用的代码段或配置信息。-->
 
         <!--二、异常日志-->
         <!--(一) 异常处理-->
@@ -297,15 +320,6 @@
         <!--11. 【推荐】定义时区分unchecked / checked 异常，避免直接抛出new RuntimeException()，更不允许抛出Exception或者Throwable，应使用有业务含义的自定义异常。推荐业界已定义过的自定义异常，如：DAOException / ServiceException等。-->
         <!--12. 【参考】对于公司外的http/api开放接口必须使用“错误码”；而应用内部推荐异常抛出；跨应用间RPC调用优先考虑使用Result方式，封装isSuccess()方法、“错误码”、“错误简短信息”。-->
         <!--13. 【参考】避免出现重复的代码（Don’t Repeat Yourself），即DRY原则。-->
-        <!--(九) 其它-->
-        <!--1. 【强制】在使用正则表达式时，利用好其预编译功能，可以有效加快正则匹配速度。-->
-        <!--2. 【强制】velocity调用POJO类的属性时，建议直接使用属性名取值即可，模板引擎会自动按规范调用POJO的getXxx()，如果是boolean基本数据类型变量（boolean命名不需要加is前缀），会自动调用isXxx()方法。-->
-        <!--3. 【强制】后台输送给页面的变量必须加$!{var}——中间的感叹号。-->
-        <!--4. 【强制】注意 Math.random() 这个方法返回是double类型，注意取值的范围 0≤x<1（能够取到零值，注意除零异常），如果想获取整数类型的随机数，不要将x放大10的若干倍然后取整，直接使用Random对象的nextInt或者nextLong方法。-->
-        <!--5. 【强制】获取当前毫秒数System.currentTimeMillis(); 而不是new Date().getTime();-->
-        <!--6. 【推荐】不要在视图模板中加入任何复杂的逻辑。-->
-        <!--7. 【推荐】任何数据结构的构造或初始化，都应指定大小，避免数据结构无限增长吃光内存。-->
-        <!--8. 【推荐】及时清理不再使用的代码段或配置信息。-->
 
         <module name="ExplicitInitialization"/>
 

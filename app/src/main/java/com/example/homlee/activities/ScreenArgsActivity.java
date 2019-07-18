@@ -23,9 +23,9 @@ public class ScreenArgsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_args);
 
-        float test_dimen = getResources().getDimension(R.dimen.test_dimen);
-        int test_dimen2 = getResources().getDimensionPixelSize(R.dimen.test_dimen);
-        int test_dimen3 = getResources().getDimensionPixelOffset(R.dimen.test_dimen);
+        float testDimen = getResources().getDimension(R.dimen.test_dimen);
+        int testDimen2 = getResources().getDimensionPixelSize(R.dimen.test_dimen);
+        int testDimen3 = getResources().getDimensionPixelOffset(R.dimen.test_dimen);
 
 
         DisplayMetrics mMetrics = MetricsUtils.getDisplayMetrics();
@@ -34,16 +34,16 @@ public class ScreenArgsActivity extends BaseActivity {
         String text = "density: " + mMetrics.density
                 + "\ndensityDpi: " + mMetrics.densityDpi
                 + "\nscaledDensity: " + mMetrics.scaledDensity
-                + "\nwidthPixels: "  + mMetrics.widthPixels
+                + "\nwidthPixels: " + mMetrics.widthPixels
                 + "\nheightPixels: " + mMetrics.heightPixels
                 + "\nxdpi: " + mMetrics.xdpi
                 + "\nydpi: " + mMetrics.ydpi
                 + "\nmStatusBarHeight: " + MetricsUtils.getStatusBarHeight()
                 + "\nsmallestScreenWidthDp: " + config.smallestScreenWidthDp
-                + "\n\ntest_dimen: " + test_dimen
-                + "\ntest_dimen2: " + test_dimen2
-                + "\ntest_dimen3: " + test_dimen3
-                + "\ntest_dimen/density = " + test_dimen3+"/"+mMetrics.density +" = "+(test_dimen3/mMetrics.density)
+                + "\n\ntest_dimen: " + testDimen
+                + "\ntest_dimen2: " + testDimen2
+                + "\ntest_dimen3: " + testDimen3
+                + "\ntest_dimen/density = " + testDimen3+"/"+mMetrics.density +" = "+(testDimen3/mMetrics.density)
                 + "\nBuild.MODEL="+ Build.MODEL
                 + "\nBuild.VERSION.SDK_INT="+Build.VERSION.SDK_INT;
 
