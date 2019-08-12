@@ -1,1 +1,1 @@
-include ':app', ':rxbus2', ':testaar', ':mvp_base'
+include ':app', ':rxbus2', ':testaar', ':mvp_base', ':kotlin'

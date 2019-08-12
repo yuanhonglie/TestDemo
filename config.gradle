@@ -35,5 +35,6 @@ ext {
             "dagger_compiler"                   : 'com.google.dagger:dagger-compiler:2.23.2',
             "arouter"                           : 'com.alibaba:arouter-api:1.5.0',
             "arouter_compiler"                  : 'com.alibaba:arouter-compiler:1.2.2',
+            "kotlin_reflect"                    : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     ]
 }

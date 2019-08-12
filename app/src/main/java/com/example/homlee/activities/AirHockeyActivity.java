@@ -7,6 +7,8 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.homlee.R;
@@ -39,12 +41,16 @@ public class AirHockeyActivity extends BaseActivity {
             mGlSurfaceView.setEGLContextClientVersion(2);
             mGlSurfaceView.setRenderer(new AirHockeyRenderer(this));
             rendererSet = true;
-        } else {
+        }
+        else
+            {
             Toast.makeText(this, "This device does not support OpenGL ES 2.0", Toast.LENGTH_SHORT).show();
             return;
         }
 
         setContentView(mGlSurfaceView);
+        if(true)
+            Log.i("AirHockey", "onCreate: sxxxx");
 
     }
 

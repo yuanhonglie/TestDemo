@@ -169,6 +169,7 @@
         <!--（四）OOP规约-->
         <!--1. 【强制】避免通过一个类的对象引用访问此类的静态变量或静态方法，无谓增加编译器解析成本，直接用类名来访问即可。-->
         <!--2. 【强制】所有的覆写方法，必须加@Override注解。-->
+        <!-- Android Studio会自动检查覆写方法未加@Override注解的错误 -->
         <!--3. 【强制】相同参数类型，相同业务含义，才可以使用Java的可变参数，避免使用Object。-->
         <!--4. 【强制】外部正在调用或者二方库依赖的接口，不允许修改方法签名，避免对接口调用方产生影响。接口过时必须加@Deprecated注解，并清晰地说明采用的新接口或者新服务是什么。-->
         <!--5. 【强制】不能使用过时的类或方法。-->
@@ -176,6 +177,7 @@
         <module name="EqualsAvoidNull"/>
         <module name="CovariantEquals"/>
         <!--7. 【强制】所有的相同类型的包装类对象之间值的比较，全部使用equals方法比较。-->
+        <module name="StringLiteralEquality"/>
         <!--8. 关于基本数据类型与包装数据类型的使用标准如下：-->
         <!--1） 【强制】所有的POJO类属性必须使用包装数据类型。-->
         <!--2） 【强制】RPC方法的返回值和参数必须使用包装数据类型。-->
@@ -272,11 +274,13 @@
             <property name="tag" value="@author"/>
             <property name="tagFormat" value="\S"/>
             <property name="tagSeverity" value="ignore"/>
+            <property name="severity" value="warning"/>
         </module>
         <module name="WriteTag">
             <property name="tag" value="@date"/>
             <property name="tagFormat" value="\S"/>
             <property name="tagSeverity" value="ignore"/>
+            <property name="severity" value="warning"/>
         </module>
         <!--4. 【强制】方法内部单行注释，在被注释语句上方另起一行，使用//注释。方法内部多行注释使用/* */注释，注意与代码对齐。-->
         <module name="TrailingComment"/>
