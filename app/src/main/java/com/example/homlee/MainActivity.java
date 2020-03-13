@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.homlee.activities.BaseActivity;
+import com.example.homlee.activities.MatrixActivity;
 import com.example.homlee.activities.UiAdaptationActivity;
 import com.example.homlee.activities.GuanMingActivity;
 import com.example.homlee.activities.OpenGlActivity;
@@ -40,6 +41,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn_mvp_viewmodel).setOnClickListener(this);
         findViewById(R.id.btn_mvp_livedata).setOnClickListener(this);
         findViewById(R.id.btn_ui_adaptation).setOnClickListener(this);
+        findViewById(R.id.btn_matrix_demo).setOnClickListener(this);
         initData();
         Log.i(className, "onCreate: isTest = " + BuildConfig.isTest);
     }
@@ -78,6 +80,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn_ui_adaptation://zhushi
                 startActivity(UiAdaptationActivity.class);
+                break;
+            case R.id.btn_matrix_demo:
+                startActivity(MatrixActivity.class);
                 break;
             default:
                 break;

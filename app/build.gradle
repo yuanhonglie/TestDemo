@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply from: '../config/quality.gradle'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 def config = rootProject.ext.android
 def libraries = rootProject.ext.dependencies
@@ -20,6 +22,7 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -58,4 +61,7 @@ dependencies {
     annotationProcessor libraries.dagger_compiler
     implementation libraries.arouter
     annotationProcessor libraries.arouter_compiler
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation libraries.kotlin_reflect
 }

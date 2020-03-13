@@ -34,6 +34,7 @@
             android:configChanges=""/>
         <activity android:name=".mvp.SimpleLoginMvpActivity"/>
         <activity android:name=".activities.UiAdaptationActivity"/>
+        <activity android:name=".activities.MatrixActivity"/>
     </application>
 
 </manifest>
