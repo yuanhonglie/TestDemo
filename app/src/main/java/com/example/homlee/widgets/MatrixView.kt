@@ -5,6 +5,8 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 
 const val SCALE_ANIMATOR_DURATION = 2000
 const val CUBE_WIDTH = 100
@@ -18,14 +20,9 @@ class MatrixView(context: Context, attrs: AttributeSet?, defStyleAttr: Int): Vie
     private lateinit var bgBitmap: Bitmap
     private lateinit var cubeBitmap: Bitmap
 
-    var displayMatrix: Matrix
+    var displayMatrix: Matrix = Matrix()
 
-    private val bmpPaint: Paint
-
-    init {
-        displayMatrix = Matrix()
-        bmpPaint = Paint(Paint.FILTER_BITMAP_FLAG)
-    }
+    private val bmpPaint: Paint = Paint(Paint.FILTER_BITMAP_FLAG)
 
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -122,6 +119,7 @@ class MatrixView(context: Context, attrs: AttributeSet?, defStyleAttr: Int): Vie
         init {
             setFloatValues(0f, 1f)
             setDuration(duration)
+            interpolator = DecelerateInterpolator()
             addUpdateListener(this)
             start.getValues(mStart)
             end.getValues(mEnd)

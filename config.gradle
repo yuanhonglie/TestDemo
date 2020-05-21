@@ -9,7 +9,7 @@ ext {
 
     libversions = [
             retrofit        : "2.4.0",
-            okhttp          : "4.0.0",
+            okhttp          : "4.4.0",
             leakcanary      : "1.6.3",
             dagger          : "2.23.2"
     ]
@@ -30,6 +30,8 @@ ext {
             "rxandroid"                         : "io.reactivex.rxjava2:rxandroid:2.0.1",
             "retrofit"                          : "com.squareup.retrofit2:retrofit:${libversions['retrofit']}",
             "retrofit_rxjava_adapter"           : "com.squareup.retrofit2:adapter-rxjava2:${libversions['retrofit']}",
+            "gson"                              : 'com.google.code.gson:gson:2.8.1',
+            "retrofit_converter"                : 'com.squareup.retrofit2:converter-gson:2.3.0',
             "okhttp"                            : "com.squareup.okhttp3:okhttp:${libversions['okhttp']}",
             "okhttp_test"                       : "com.squareup.okhttp3:mockwebserver:${libversions['okhttp']}",
             "dagger"                            : "com.google.dagger:dagger:${libversions['dagger']}",

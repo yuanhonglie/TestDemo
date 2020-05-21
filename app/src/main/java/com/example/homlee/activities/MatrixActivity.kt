@@ -16,11 +16,10 @@ class MatrixActivity: BaseActivity(), View.OnClickListener {
 
     private fun performAction() {
         val endMatrix = Matrix(matrixView.displayMatrix)
-        //endMatrix.setScale(2f, 2f)
-        //endMatrix.postTranslate(100f, 100f)
+//        endMatrix.setRotate(90f, 50f, 50f)
+//        endMatrix.postScale(2f, 2f)
+        endMatrix.postTranslate(200f, 200f)
 
-        endMatrix.setScale(2f, 2f, -100f, -100f)
-        //endMatrix.postTranslate(100f, 100f)
         matrixView.animateToMatrix(endMatrix)
     }
 
