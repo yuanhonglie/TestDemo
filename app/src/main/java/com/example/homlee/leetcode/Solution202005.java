@@ -1,7 +1,13 @@
 package com.example.homlee.leetcode;
 
-public class Solution0521 {
-    public static String longestPalindrome(String s) {
+public class Solution202005 {
+    /**
+     * 求最长回文子串
+     * @date 0522
+     * @param s
+     * @return
+     */
+    public String longestPalindrome(String s) {
         int size = s.length();
         int [][] p = new int [size][size];
         String output = "";
@@ -25,9 +31,15 @@ public class Solution0521 {
         return output;
     }
 
-    public static void main() {
+
+
+    public static void main(String[] args) {
+        //0522
         String input = "addeeefssfsfweesdefed";
-        String output = longestPalindrome(input);
+        Solution202005 solution = new Solution202005();
+        String output = solution.longestPalindrome(input);
         System.out.println(output);
+
+
     }
 }
