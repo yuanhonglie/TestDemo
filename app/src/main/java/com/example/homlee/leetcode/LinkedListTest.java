@@ -12,9 +12,35 @@ public class LinkedListTest {
         }
     }
 
-    public static boolean isPalindrome(LinkedNode node) {
+    public boolean isPalindrome(LinkedNode head) {
 
-        return false;
+        LinkedNode prev = null;
+        LinkedNode slow = head;
+        LinkedNode fast = head;
+        LinkedNode next;
+        while(fast != null && fast.next != null) {
+            fast = fast.next.next;
+            next = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = next;
+        }
+
+        if (fast != null) {
+            slow = slow.next;
+        }
+
+        while (prev != null) {
+            if (prev.value != slow.value) {
+                return false;
+            }
+
+            prev = prev.next;
+            slow = slow.next;
+        }
+
+
+        return true;
     }
 
 
@@ -27,7 +53,8 @@ public class LinkedListTest {
     }
 
     public static void main(String[] args) {
-        String text = "asdffdsa";
+        //String text = "asdffdsa";
+        String text = "asdfafdsa";
         LinkedNode head = new LinkedNode();
         LinkedNode node = head;
         for (int i = 0; i < text.length(); i++) {
@@ -35,6 +62,9 @@ public class LinkedListTest {
                 node = node.next;
         }
         print(head.next);
+        LinkedListTest test = new LinkedListTest();
+        boolean isPalindrome = test.isPalindrome(head.next);
+        System.out.println(text + " isPalindrome = " + isPalindrome);
 
     }
 }

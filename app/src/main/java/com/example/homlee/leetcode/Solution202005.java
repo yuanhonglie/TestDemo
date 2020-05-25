@@ -35,6 +35,49 @@ public class Solution202005 {
         return output;
     }
 
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) { val = x; }
+    }
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode head = new ListNode(0);
+        ListNode node = head;
+        ListNode left = l1;
+        ListNode right = l2;
+        int i = 0;
+        int sum = 0;
+        while (left != null || right != null) {
+            int x = left != null ? left.val : 0;
+            int y = right != null ? right.val : 0;
+            sum = x + y + i;
+            i = sum / 10;
+            node.next = new ListNode(sum % 10);
+            node = node.next;
+            left = left != null ? left.next : null;
+            right = right != null ? right.next : null;
+        }
+
+        if (i > 0) {
+            node.next = new ListNode(i);
+        }
+
+        return head.next;
+    }
+
+    public static void print(ListNode node) {
+        if (node == null) {
+            return;
+        }
+        do {
+            System.out.print(node.val);
+            System.out.print("->");
+            node = node.next;
+        } while (node != null);
+    }
+
+
     //====0522=====
     private static class TreeNode {
         int value;
@@ -139,5 +182,25 @@ public class Solution202005 {
         System.out.println();
         postorderPrint(treeNode);
          */
+
+        ListNode node = new ListNode(2);
+        ListNode left = node;
+        node.next = new ListNode(4);
+        node = node.next;
+        node.next = new ListNode(3);
+
+        node = new ListNode(5);
+        ListNode right = node;
+        node.next = new ListNode(6);
+        node = node.next;
+        node.next = new ListNode(4);
+
+        print(left);
+        System.out.println();
+        print(right);
+        System.out.println();
+
+        ListNode listNode = solution.addTwoNumbers(left, right);
+        print(listNode);
     }
 }
