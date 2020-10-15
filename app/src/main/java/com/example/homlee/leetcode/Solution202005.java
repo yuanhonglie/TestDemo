@@ -2,6 +2,8 @@ package com.example.homlee.leetcode;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class Solution202005 {
     //===0521===
@@ -154,6 +156,28 @@ public class Solution202005 {
         print(root.value);
     }
 
+    /**
+     * 层级遍历，采用广度优先（BFS）遍历
+     * @param root
+     */
+    public static void levelorderPrint(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Queue<TreeNode> queue = new ArrayBlockingQueue<>(16);
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.remove();
+            print(node.value);
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
+    }
+
     private static void print(int i) {
         System.out.print(i);
         System.out.print(',');
@@ -172,7 +196,7 @@ public class Solution202005 {
         String output = solution.longestPalindrome(input);
         System.out.println(output);
         */
-        /*
+
         int [] preorder = new int[] {1, 2, 4, 5, 7, 8, 3, 6};
         int[] inorder = new int[] {4, 2, 7, 5, 8, 1, 3, 6};
         TreeNode treeNode = solution.buildTree(preorder, inorder);
@@ -181,8 +205,11 @@ public class Solution202005 {
         inorderPrint(treeNode);
         System.out.println();
         postorderPrint(treeNode);
-         */
+        System.out.println();
+        levelorderPrint(treeNode);
 
+
+        /*
         ListNode node = new ListNode(2);
         ListNode left = node;
         node.next = new ListNode(4);
@@ -202,5 +229,7 @@ public class Solution202005 {
 
         ListNode listNode = solution.addTwoNumbers(left, right);
         print(listNode);
+         */
+
     }
 }
