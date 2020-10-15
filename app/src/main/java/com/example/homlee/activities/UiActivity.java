@@ -15,6 +15,7 @@ public class UiActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_ui_demo);
         findViewById(R.id.btn_editor).setOnClickListener(this);
         findViewById(R.id.btn_screen_args).setOnClickListener(this);
+        findViewById(R.id.btn_shadow_text).setOnClickListener(this);
     }
 
     @Override
@@ -25,6 +26,9 @@ public class UiActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn_editor:
                 startActivity(EditorEffectActivity.class);
+                break;
+            case R.id.btn_shadow_text:
+                startActivity(ImageTextViewActivity.class);
                 break;
             default:
                 break;

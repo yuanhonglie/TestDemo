@@ -35,6 +35,7 @@
         <activity android:name=".mvp.SimpleLoginMvpActivity"/>
         <activity android:name=".activities.UiAdaptationActivity"/>
         <activity android:name=".activities.MatrixActivity"/>
+        <activity android:name=".activities.ImageTextViewActivity"/>
     </application>
 
 </manifest>

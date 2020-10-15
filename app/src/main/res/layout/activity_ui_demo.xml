@@ -23,6 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Editor Focus Change"/>
+            <Button
+                android:id="@+id/btn_shadow_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shadow Text"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

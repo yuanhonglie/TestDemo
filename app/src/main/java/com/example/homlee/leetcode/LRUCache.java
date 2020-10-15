@@ -3,6 +3,9 @@ package com.example.homlee.leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * leetcode 146 LRU缓存机制
+ */
 public class LRUCache {
     private static class DLinkedNode {
         int key;
