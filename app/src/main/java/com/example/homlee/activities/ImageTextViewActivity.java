@@ -25,6 +25,7 @@ public class ImageTextViewActivity extends BaseActivity {
         setContentView(R.layout.activity_image_text_activity);
         mTextView1 = findViewById(R.id.tv_text1);
         mTextView2 = findViewById(R.id.tv_text2);
+        //showText("A");
         mHandler.obtainMessage(MSG_SHOW_TEXT, 0).sendToTarget();
     }
 

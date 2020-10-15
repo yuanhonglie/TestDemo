@@ -20,7 +20,6 @@ public class ImageCache {
     private static final int MAX_CACHE_SIZE = 30 * 1024 * 1024;
     private static final int DEFAULT_TEXT_SIZE = 290;
     private static final int DEFAULT_TEXT_COLOR = Color.BLACK;
-    private static final int CHAR_MARGIN = 2;
     private LruCache<Character, Bitmap> mLruCache;
     private volatile static ImageCache mInstance;
     private Context mContext;
@@ -33,7 +32,7 @@ public class ImageCache {
         mPaint.setTextSize(textSize);
         mPaint.setColor(textColor);
         mPaint.setTypeface(Typeface.SANS_SERIF);
-        mPaint.setFakeBoldText(true);
+        //mPaint.setFakeBoldText(true);
 
         mLruCache = new LruCache<Character, Bitmap>(MAX_CACHE_SIZE) {
             @Override
@@ -60,17 +59,19 @@ public class ImageCache {
 
     private Bitmap createBitmapByChar(Character key) {
         String text = "" + key;
-        float width = mPaint.measureText(text) + 1;
+
+        int width = (int) (mPaint.measureText(text) + 1);
+        Rect bounds = new Rect();
+        mPaint.getTextBounds(text, 0, 1, bounds);
         Paint.FontMetrics metrics = mPaint.getFontMetrics();
-        float lineHeight = Math.abs(metrics.ascent) + Math.abs(metrics.descent) + Math.abs(metrics.leading) + 1;
-        float lineHeight2 = Math.abs(metrics.bottom) + Math.abs(metrics.top) + Math.abs(metrics.leading) + 1;
+        float height = Math.abs(metrics.bottom) + Math.abs(metrics.top) + Math.abs(metrics.leading) + 1;
+        Log.i(TAG, "createBitmapByChar: width = " + width + ", bounds.width() = " + bounds.width());
         Log.i(TAG, "createBitmapByChar: ascent = " + metrics.ascent + ", bottom = " + metrics.bottom + ", descent = " + metrics.descent + ", top = " + metrics.top + ", leading = " + metrics.leading);
-        Log.i(TAG, "createBitmapByChar: lineHeight = " + lineHeight + ", lineHeight2 = " + lineHeight2);
-        Bitmap bitmap = Bitmap.createBitmap((int) width + CHAR_MARGIN * 2, (int) lineHeight2, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(Math.max(bounds.width(), width), (int) height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        canvas.drawColor(Color.GREEN);
-        int baseline = (int) (lineHeight2 - Math.abs(metrics.bottom));
-        canvas.drawText(text, CHAR_MARGIN, baseline, mPaint);
+        //canvas.drawColor(Color.GREEN);
+        int baseline = (int) (height - Math.abs(metrics.bottom));
+        canvas.drawText(text, 0, baseline, mPaint);
         return bitmap;
     }
 

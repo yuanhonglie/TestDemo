@@ -127,6 +127,7 @@ public class ImageTextView extends androidx.appcompat.widget.AppCompatImageView 
         float minScale = Math.min(scaleX, scaleY);
         float dx = (widthSize - (bitmapsWidth * minScale)) / 2;
         float dy = (heightSize - (bitmapsHeight * minScale)) / 2;
+        Log.i(TAG, "onMeasure: scale = " + minScale + ", dx = " + dx + ", dy = " + dy);
         matrix.setScale(minScale, minScale);
         matrix.postTranslate(dx, dy);
 
