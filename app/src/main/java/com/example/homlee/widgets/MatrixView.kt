@@ -33,7 +33,7 @@ class MatrixView(context: Context, attrs: AttributeSet?, defStyleAttr: Int): Vie
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        canvas?.let {
+        if (canvas != null) {
             if (bgBitmap != null) {
                 canvas.drawBitmap(bgBitmap, 0f, 0f, bmpPaint)
             }
@@ -41,7 +41,6 @@ class MatrixView(context: Context, attrs: AttributeSet?, defStyleAttr: Int): Vie
             if (cubeBitmap != null) {
                 canvas.drawBitmap(cubeBitmap, displayMatrix, bmpPaint)
             }
-
         }
     }
 

@@ -85,7 +85,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(UiAdaptationActivity.class);
                 break;
             case R.id.btn_matrix_demo:
-                startActivity(MatrixActivity.class);
+                //startActivity(MatrixActivity.class);
+                startExternalActivity();
                 break;
             case R.id.btn_recyclerview_demo:
                 startActivity(RecyclerViewActivity.class);
@@ -93,6 +94,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    private void startExternalActivity() {
+        Intent intent = new Intent();
+        //intent.setClassName("com.google.android.gms", "com.google.android.gms.app.settings.GoogleSettingsLink");
+        intent.setClassName("com.google.android.gms", "com.google.android.gms.app.settings.GoogleSettingsActivity");
+//        intent.setClassName("com.royole.rydrawing", "com.royole.rydrawing.SplashActivity");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     private void requestFloatViewPermission() {
