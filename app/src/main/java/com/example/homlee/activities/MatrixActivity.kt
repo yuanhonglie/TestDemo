@@ -18,7 +18,9 @@ class MatrixActivity: BaseActivity(), View.OnClickListener {
         val endMatrix = Matrix(matrixView.displayMatrix)
 //        endMatrix.setRotate(90f, 50f, 50f)
 //        endMatrix.postScale(2f, 2f)
-        endMatrix.postTranslate(200f, 200f)
+        endMatrix.setScale(2f, 2f)
+       endMatrix.postTranslate(200f, 200f)
+
 
         matrixView.animateToMatrix(endMatrix)
     }

@@ -35,7 +35,5 @@ dependencies {
     implementation libraries.lifecycle_extensions
     implementation libraries.rxlifecycle
     implementation libraries.rxlifecycle_components
-    debugImplementation libraries.leakcanary_fragment
-    debugImplementation libraries.leakcanary_android
-    releaseImplementation libraries.leakcanary_android_no_op
+    debugImplementation libraries.leakcanary
 }

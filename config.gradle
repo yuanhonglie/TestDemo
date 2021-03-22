@@ -10,7 +10,7 @@ ext {
     libversions = [
             retrofit        : "2.4.0",
             okhttp          : "4.4.0",
-            leakcanary      : "1.6.3",
+            leakcanary      : "2.4",
             dagger          : "2.23.2"
     ]
 
@@ -22,9 +22,7 @@ ext {
             "lifecycle_extensions"              : "androidx.lifecycle:lifecycle-extensions:2.0.0-rc01",
             "rxlifecycle"                       : "com.trello.rxlifecycle2:rxlifecycle:2.2.2",
             "rxlifecycle_components"            : "com.trello.rxlifecycle2:rxlifecycle-components:2.2.2",
-            "leakcanary_fragment"               : "com.squareup.leakcanary:leakcanary-support-fragment:1.6.3",
-            "leakcanary_android"                : "com.squareup.leakcanary:leakcanary-android:${libversions['leakcanary']}",
-            "leakcanary_android_no_op"          : "com.squareup.leakcanary:leakcanary-android-no-op:${libversions['leakcanary']}",
+            "leakcanary"                        : "com.squareup.leakcanary:leakcanary-android:${libversions['leakcanary']}",
             "material"                          : "com.google.android.material:material:1.0.0",
             "rxjava"                            : "io.reactivex.rxjava2:rxjava:2.1.1",
             "rxandroid"                         : "io.reactivex.rxjava2:rxandroid:2.0.1",

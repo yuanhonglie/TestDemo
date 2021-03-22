@@ -52,9 +52,7 @@ dependencies {
     implementation libraries.rxlifecycle
     implementation (name: 'rxbus2-debug', ext: 'aar')
     implementation project(':mvp_base')
-    debugImplementation libraries.leakcanary_fragment
-    debugImplementation libraries.leakcanary_android
-    releaseImplementation libraries.leakcanary_android_no_op
+    debugImplementation libraries.leakcanary
     implementation libraries.okhttp
     testImplementation libraries.okhttp_test
     implementation libraries.dagger
