@@ -6,6 +6,12 @@
     <string name="label_building_name1">7栋A座</string>
     <string name="label_building_name2">7栋B座</string>
     <string name="label_building_name3">7栋D座</string>
+
+    <string name="label_wanyueshan_building_name1">4栋</string>
+    <string name="label_wanyueshan_building_name2">5栋</string>
+    <string name="label_wanyueshan_building_name3">6栋</string>
+    <string name="label_wanyueshan_building_name4">7栋</string>
+
     <string name="dialog_msg_select_room">选择\"%s\"?</string>
     <string name="dialog_msg_unselect_room">退选\"%s\"?</string>
     <string name="dialog_confirm">确定</string>

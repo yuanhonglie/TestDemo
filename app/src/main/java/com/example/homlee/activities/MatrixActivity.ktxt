@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.homlee.R
 import kotlinx.android.synthetic.main.activity_matrix.*
-
+const val TAG = "ljsljf"
 class MatrixActivity: BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {

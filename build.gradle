@@ -5,7 +5,7 @@ buildscript {
 
     repositories {
         //maven { url "https://mirrors.huaweicloud.com/repository/maven/" }
-        //maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         mavenCentral()
         google()
         jcenter()
@@ -27,7 +27,7 @@ buildscript {
 allprojects {
     repositories {
         //maven { url "https://mirrors.huaweicloud.com/repository/maven/" }
-        //maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         mavenCentral()
         google()
         jcenter()

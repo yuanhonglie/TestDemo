@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply from: '../config/quality.gradle'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-android-extensions'
 
 def config = rootProject.ext.android
 def libraries = rootProject.ext.dependencies
@@ -59,9 +59,9 @@ dependencies {
     annotationProcessor libraries.dagger_compiler
     implementation libraries.arouter
     annotationProcessor libraries.arouter_compiler
-    implementation "androidx.core:core-ktx:+"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation libraries.kotlin_reflect
+    //implementation "androidx.core:core-ktx:+"
+    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //implementation libraries.kotlin_reflect
     implementation libraries.gson
     implementation libraries.retrofit_converter
     //implementation "com.android.tools.build:gradle:3.4.0"

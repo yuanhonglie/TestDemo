@@ -14,13 +14,13 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.homlee.activities.BaseActivity;
-import com.example.homlee.activities.MatrixActivity;
 import com.example.homlee.activities.RecyclerViewActivity;
 import com.example.homlee.activities.UiAdaptationActivity;
 import com.example.homlee.activities.GuanMingActivity;
 import com.example.homlee.activities.OpenGlActivity;
 import com.example.homlee.activities.RxJavaActivity;
 import com.example.homlee.activities.UiActivity;
+import com.example.homlee.activities.WanYueShanActivity;
 import com.example.homlee.activities.WebViewActivity;
 import com.example.homlee.mvp.SimpleLoginMvpActivity;
 import com.homlee.rxbus2.MessageManager;
@@ -37,6 +37,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn_rx_java).setOnClickListener(this);
         findViewById(R.id.btn_webview).setOnClickListener(this);
         findViewById(R.id.btn_guanming).setOnClickListener(this);
+        findViewById(R.id.btn_wanyueshan).setOnClickListener(this);
         findViewById(R.id.btn_floatview).setOnClickListener(this);
         findViewById(R.id.btn_mvp).setOnClickListener(this);
         findViewById(R.id.btn_mvp_viewmodel).setOnClickListener(this);
@@ -70,6 +71,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn_guanming:
                 startActivity(GuanMingActivity.class);
+                break;
+            case R.id.btn_wanyueshan:
+                startActivity(WanYueShanActivity.class);
                 break;
             case R.id.btn_floatview:
                 requestFloatViewPermission();
